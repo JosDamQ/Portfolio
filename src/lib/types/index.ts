@@ -28,7 +28,6 @@ export interface Project {
 export interface Skill {
   name: string;
   category: 'frontend' | 'backend' | 'database' | 'tools' | 'other';
-  proficiency: 1 | 2 | 3 | 4 | 5;
   yearsOfExperience: number;
   icon?: string;
 }
@@ -128,7 +127,6 @@ export interface SkillCategoryProps {
 
 export interface SkillItemProps {
   skill: Skill;
-  showProficiency?: boolean;
   showExperience?: boolean;
 }
 
