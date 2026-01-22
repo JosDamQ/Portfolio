@@ -1,7 +1,7 @@
 import { PersonalInfo, ContactInfo } from '../types';
 
 export const personalInfo: PersonalInfo = {
-  name: "Alex Rodriguez",
+  name: "Josue Rodriguez",
   title: "Full Stack Developer",
   summary: "Desarrollador apasionado con 2+ años de experiencia creando aplicaciones web modernas y escalables. Especializado en React, Node.js y tecnologías cloud, con un enfoque en la experiencia del usuario y las mejores prácticas de desarrollo.",
   avatar: "/images/profile.jpg",

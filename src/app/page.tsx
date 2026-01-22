@@ -1,48 +1,44 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { Header, Footer } from '@/components/layout';
+import { personalInfo, contactInfo } from '@/lib/data';
+
 export default function Home() {
+  const [activeSection, setActiveSection] = useState('hero');
+
+  // Handle scroll-based section detection
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
+      const scrollPosition = window.scrollY + 100; // Offset for header
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md dark:bg-gray-900/80 z-50">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-xl font-bold text-gray-900 dark:text-white">
-              Portfolio
-            </div>
-            <div className="hidden md:flex space-x-8">
-              <a
-                href="#about"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              >
-                About
-              </a>
-              <a
-                href="#skills"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              >
-                Skills
-              </a>
-              <a
-                href="#experience"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              >
-                Experience
-              </a>
-              <a
-                href="#projects"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              >
-                Projects
-              </a>
-              <a
-                href="#contact"
-                className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
-              >
-                Contact
-              </a>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <Header
+        personalInfo={personalInfo}
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
 
       {/* Main Content */}
       <main>
@@ -204,11 +200,10 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 px-6">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2024 Developer Portfolio. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer
+        contactInfo={contactInfo}
+        personalInfo={personalInfo}
+      />
     </div>
   );
 }
