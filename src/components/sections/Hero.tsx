@@ -29,10 +29,12 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-6"
+      role="banner"
+      aria-label="Hero section - Introduction and overview"
     >
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-purple-dark">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-900 via-secondary-900 to-accent-purple-dark" aria-hidden="true">
         {/* Animated gradient overlay */}
         <motion.div
           className="absolute inset-0 opacity-30"
@@ -48,6 +50,7 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
             repeat: Infinity,
             ease: 'linear',
           }}
+          aria-hidden="true"
         />
         
         {/* Floating particles */}
@@ -55,24 +58,23 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container-responsive text-center text-white pt-16 lg:pt-20 min-h-screen flex flex-col justify-center">
-        <div className="py-8">
+      <div className="relative z-10 container mx-auto px-6 text-center text-white">
         {/* Avatar */}
         <motion.div
-          className="mb-6 sm:mb-8"
+          className="mb-4"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <div className="relative inline-block">
             <motion.div
-              className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden border-4 border-white/30 shadow-2xl"
+              className="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden border-4 border-white/30 shadow-2xl"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             >
               <img
                 src={personalInfo.avatar}
-                alt={personalInfo.name}
+                alt={`${personalInfo.name} - Professional headshot`}
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   // Fallback to a gradient background if image fails to load
@@ -88,18 +90,19 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
               className="absolute inset-0 rounded-full border-2 border-white/20"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+              aria-hidden="true"
             />
           </div>
         </motion.div>
 
         {/* Name with typewriter animation */}
         <motion.div
-          className="mb-3 sm:mb-4"
+          className="mb-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-2 leading-tight">
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-2">
             <AnimatedText
               text={personalInfo.name}
               className="gradient-text"
@@ -112,12 +115,12 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
 
         {/* Title with typewriter animation */}
         <motion.div
-          className="mb-4 sm:mb-6"
+          className="mb-4"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
         >
-          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium text-primary-200 leading-relaxed">
+          <h2 className="text-xl md:text-2xl lg:text-3xl font-medium text-primary-200">
             <AnimatedText
               text={personalInfo.title}
               speed={5}
@@ -128,50 +131,38 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
           </h2>
         </motion.div>
 
-        {/* Summary with fade-in animation */}
-        <motion.div
-          className="mb-6 sm:mb-8 max-w-2xl lg:max-w-3xl mx-auto px-4"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-        >
-          <p className="text-base sm:text-lg md:text-xl text-secondary-200 leading-relaxed">
-            <FadeInText
-              text={personalInfo.summary}
-              delay={900}
-              staggerDelay={0.005}
-            />
-          </p>
-        </motion.div>
-
         {/* Location */}
         <motion.div
-          className="mb-8 sm:mb-12"
+          className="mb-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.0 }}
         >
-          <p className="text-secondary-300 text-sm sm:text-base">
-            📍 {personalInfo.location}
+          <p className="text-secondary-300 text-sm md:text-base" aria-label={`Located in ${personalInfo.location}`}>
+            <span aria-hidden="true">📍</span> {personalInfo.location}
           </p>
         </motion.div>
 
         {/* Call-to-action buttons */}
         <motion.div
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 px-4"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2 }}
+          role="group"
+          aria-label="Primary actions"
         >
           <Button
             variant="primary"
             size="lg"
             onClick={scrollToProjects}
-            className="group w-full sm:w-auto"
+            className="group"
+            aria-label="View my projects and portfolio work"
             leftIcon={
               <motion.div
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.5 }}
+                aria-hidden="true"
               >
                 <Github className="w-5 h-5" />
               </motion.div>
@@ -184,11 +175,13 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
             variant="glass"
             size="lg"
             onClick={handleResumeDownload}
-            className="group w-full sm:w-auto"
+            className="group"
+            aria-label="Download my resume in PDF format"
             leftIcon={
               <motion.div
                 whileHover={{ y: -2 }}
                 transition={{ duration: 0.3 }}
+                aria-hidden="true"
               >
                 <Download className="w-5 h-5" />
               </motion.div>
@@ -201,11 +194,13 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
             variant="outline"
             size="lg"
             onClick={scrollToContact}
-            className="group border-white/30 text-white hover:bg-white hover:text-primary-900 w-full sm:w-auto"
+            className="group border-white/30 text-white hover:bg-white hover:text-primary-900"
+            aria-label="Go to contact section to get in touch"
             leftIcon={
               <motion.div
                 whileHover={{ scale: 1.2 }}
                 transition={{ duration: 0.3 }}
+                aria-hidden="true"
               >
                 <Mail className="w-5 h-5" />
               </motion.div>
@@ -217,75 +212,51 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
 
         {/* Social Links */}
         <motion.div
-          className="flex justify-center gap-4 sm:gap-6 mb-16 sm:mb-24"
+          className="flex justify-center gap-6"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
+          role="group"
+          aria-label="Social media links"
         >
           <motion.a
             href={contactInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="min-h-[48px] min-w-[48px] rounded-full glass-button hover:scale-110 transition-all duration-300 flex items-center justify-center"
+            className="p-3 rounded-full glass-button hover:scale-110 transition-all duration-300"
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.95 }}
-            aria-label="GitHub Profile"
+            aria-label="Visit my GitHub profile (opens in new tab)"
           >
-            <Github className="w-5 h-5 sm:w-6 sm:h-6" />
+            <Github className="w-6 h-6" aria-hidden="true" />
           </motion.a>
           
           <motion.a
             href={contactInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="min-h-[48px] min-w-[48px] rounded-full glass-button hover:scale-110 transition-all duration-300 flex items-center justify-center"
+            className="p-3 rounded-full glass-button hover:scale-110 transition-all duration-300"
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.95 }}
-            aria-label="LinkedIn Profile"
+            aria-label="Connect with me on LinkedIn (opens in new tab)"
           >
-            <Linkedin className="w-5 h-5 sm:w-6 sm:h-6" />
+            <Linkedin className="w-6 h-6" aria-hidden="true" />
           </motion.a>
           
           <motion.a
             href={`mailto:${contactInfo.email}`}
-            className="min-h-[48px] min-w-[48px] rounded-full glass-button hover:scale-110 transition-all duration-300 flex items-center justify-center"
+            className="p-3 rounded-full glass-button hover:scale-110 transition-all duration-300"
             whileHover={{ y: -3 }}
             whileTap={{ scale: 0.95 }}
-            aria-label="Send Email"
+            aria-label={`Send me an email at ${contactInfo.email}`}
           >
-            <Mail className="w-5 h-5 sm:w-6 sm:h-6" />
+            <Mail className="w-6 h-6" aria-hidden="true" />
           </motion.a>
         </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
-        >
-          <motion.button
-            className="flex flex-col items-center min-h-[44px] group focus-ring rounded-lg"
-            onClick={() => onScrollToSection('about')}
-            whileHover={{ y: -2 }}
-            aria-label="Scroll to about section"
-          >
-            <span className="text-xs sm:text-sm text-secondary-400 mb-2 sm:mb-3 group-hover:text-white transition-colors">
-              Scroll para explorar
-            </span>
-            <motion.div
-              animate={{ y: [0, 6, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            >
-              <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5 text-secondary-400 group-hover:text-white transition-colors" />
-            </motion.div>
-          </motion.button>
-        </motion.div>
-        </div>
       </div>
 
       {/* Gradient overlay for better text readability */}
-      <div className="absolute inset-0 bg-black/20 pointer-events-none" />
+      <div className="absolute inset-0 bg-black/20 pointer-events-none" aria-hidden="true" />
     </section>
   );
 }

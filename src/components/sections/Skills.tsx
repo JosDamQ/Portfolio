@@ -154,14 +154,19 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className={`
-        p-6 rounded-xl border transition-all duration-300 cursor-pointer relative overflow-hidden
-        ${isHighlighted 
-          ? 'border-primary-400 bg-gradient-to-br from-primary-50 to-primary-100/50 dark:from-primary-900/30 dark:to-primary-800/20 dark:border-primary-500' 
-          : 'border-secondary-200 bg-white dark:bg-secondary-800 dark:border-secondary-700'
-        }
-        ${isHovered ? 'shadow-xl transform -translate-y-2 scale-105' : 'shadow-md'}
-      `}>
+      <div 
+        className={`
+          p-6 rounded-xl border transition-all duration-300 cursor-pointer relative overflow-hidden
+          ${isHighlighted 
+            ? 'border-primary-400 bg-gradient-to-br from-primary-50 to-primary-100/50 dark:from-primary-900/30 dark:to-primary-800/20 dark:border-primary-500' 
+            : 'border-secondary-200 bg-white dark:bg-secondary-800 dark:border-secondary-700'
+          }
+          ${isHovered ? 'shadow-xl transform -translate-y-2 scale-105' : 'shadow-md'}
+        `}
+        role="article"
+        aria-label={`${skill.name} skill with ${skill.yearsOfExperience} years of experience${isHighlighted ? ' - highlighted for web development' : ''}`}
+        tabIndex={0}
+      >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             {/* Skill Icon with technology-specific color */}
@@ -175,8 +180,10 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
                 color: skillColor,
                 border: `2px solid ${skillColor}40`
               }}
+              role="img"
+              aria-label={`${skill.name} technology icon`}
             >
-              <IconComponent className="w-8 h-8" />
+              <IconComponent className="w-8 h-8" aria-hidden="true" />
             </div>
             
             <div>
@@ -199,8 +206,10 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
               animate={{ scale: 1, rotate: 0 }}
               transition={{ type: "spring", stiffness: 500, damping: 30, delay: index * 0.1 }}
               className="flex items-center gap-1"
+              role="status"
+              aria-label="Highlighted for web development"
             >
-              <Star className="w-6 h-6 text-yellow-500 fill-current" />
+              <Star className="w-6 h-6 text-yellow-500 fill-current" aria-hidden="true" />
               <span className="text-sm font-medium text-yellow-600 dark:text-yellow-400">
                 Web Dev
               </span>
@@ -234,16 +243,25 @@ function SkillCategoryTab({ category, isActive, onClick, skillCount }: SkillCate
           : 'hover:bg-secondary-100 dark:hover:bg-secondary-800'
         }
       `}
+      role="tab"
+      aria-selected={isActive}
+      aria-controls={`tabpanel-${category.name.toLowerCase()}`}
+      id={`tab-${category.name.toLowerCase()}`}
+      tabIndex={isActive ? 0 : -1}
+      aria-label={`${category.name} skills category - ${skillCount} skills`}
     >
-      <IconComponent className="w-5 h-5" />
+      <IconComponent className="w-5 h-5" aria-hidden="true" />
       <span className="font-medium">{category.name}</span>
-      <span className={`
-        text-xs px-3 py-1.5 rounded-full min-w-[24px] text-center font-semibold ml-2
-        ${isActive 
-          ? 'bg-white/20 text-white' 
-          : 'bg-secondary-200 dark:bg-secondary-700 text-secondary-600 dark:text-secondary-400'
-        }
-      `}>
+      <span 
+        className={`
+          text-xs px-3 py-1.5 rounded-full min-w-[24px] text-center font-semibold ml-2
+          ${isActive 
+            ? 'bg-white/20 text-white' 
+            : 'bg-secondary-200 dark:bg-secondary-700 text-secondary-600 dark:text-secondary-400'
+          }
+        `}
+        aria-label={`${skillCount} skills in this category`}
+      >
         {skillCount}
       </span>
     </Button>
@@ -263,7 +281,11 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
   );
   
   return (
-    <section id="skills" className="py-20 bg-secondary-50/50 dark:bg-secondary-900/50">
+    <section 
+      id="skills" 
+      className="py-20 bg-secondary-50/50 dark:bg-secondary-900/50"
+      aria-label="Technical skills and expertise"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -273,7 +295,7 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Code className="w-6 h-6 text-primary-500" />
+            <Code className="w-6 h-6 text-primary-500" aria-hidden="true" />
             <span className="text-primary-500 font-medium uppercase tracking-wider text-sm">
               Habilidades Técnicas
             </span>
@@ -294,6 +316,8 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap justify-center gap-3 mb-12"
+          role="tablist"
+          aria-label="Skill categories"
         >
           {categories.map((category) => (
             <SkillCategoryTab
@@ -321,6 +345,9 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+              role="tabpanel"
+              aria-labelledby={`tab-${activeCategory.toLowerCase()}`}
+              aria-label={`${activeCategory} skills`}
             >
               {currentCategorySkills.map((skill, index) => (
                 <SkillItem
@@ -345,8 +372,12 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
           <Card variant="glass" className="p-8">
             <CardContent>
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-primary-500 rounded-lg">
-                  <Zap className="w-6 h-6 text-white" />
+                <div 
+                  className="p-3 bg-primary-500 rounded-lg"
+                  role="img"
+                  aria-label="Web development focus icon"
+                >
+                  <Zap className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-semibold text-secondary-900 dark:text-secondary-100">
@@ -358,7 +389,11 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
                 </div>
               </div>
               
-              <div className="flex flex-wrap gap-3">
+              <div 
+                className="flex flex-wrap gap-3"
+                role="list"
+                aria-label="Primary web development technologies"
+              >
                 {skills
                   .filter(skill => webDevelopmentTechs.includes(skill.name))
                   .sort((a, b) => b.yearsOfExperience - a.yearsOfExperience)
@@ -376,10 +411,13 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
                         transition={{ duration: 0.3 }}
                         whileHover={{ scale: 1.05 }}
                         className="inline-flex items-center gap-2 px-4 py-2 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium border border-primary-200 dark:border-primary-700"
+                        role="listitem"
+                        aria-label={`${skill.name} - ${skill.yearsOfExperience} years of experience`}
                       >
                         <IconComponent 
                           className="w-4 h-4" 
                           style={{ color: skillColor }}
+                          aria-hidden="true"
                         />
                         {skill.name}
                         <span className="text-xs opacity-75">

@@ -8,7 +8,7 @@ const Navigation: React.FC<NavigationProps> = ({
   sections,
 }) => {
   return (
-    <nav className="flex space-x-2 lg:space-x-8">
+    <nav className="flex space-x-2 lg:space-x-8" role="navigation" aria-label="Main navigation">
       {sections.map((section) => (
         <button
           key={section.id}
@@ -19,15 +19,21 @@ const Navigation: React.FC<NavigationProps> = ({
               : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800'
           }`}
           aria-current={activeSection === section.id ? 'page' : undefined}
+          aria-describedby={activeSection === section.id ? `${section.id}-indicator` : undefined}
+          aria-label={`Navigate to ${section.label} section`}
         >
           {section.label}
           
           {/* Active section indicator */}
           {activeSection === section.id && (
-            <span 
-              className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transform transition-all duration-200"
-              aria-hidden="true"
-            />
+            <>
+              <span 
+                id={`${section.id}-indicator`}
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full transform transition-all duration-200"
+                aria-hidden="true"
+              />
+              <span className="sr-only">(current section)</span>
+            </>
           )}
           
           {/* Hover effect - only show on devices that support hover */}

@@ -199,7 +199,11 @@ export function About({ personalInfo }: AboutSectionProps) {
   }
 
   return (
-    <section id="about" className="py-12 sm:py-16 lg:py-20 spacing-responsive-md bg-white dark:bg-gray-800">
+    <section 
+      id="about" 
+      className="py-12 sm:py-16 lg:py-20 spacing-responsive-md bg-white dark:bg-gray-800"
+      aria-label="About me - Professional background and experience"
+    >
       <div className="container-responsive">
         <motion.div
           variants={containerVariants}
@@ -212,7 +216,7 @@ export function About({ personalInfo }: AboutSectionProps) {
             <h2 className="text-responsive-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
               About Me
             </h2>
-            <div className="w-16 sm:w-24 h-1 gradient-primary mx-auto rounded-full"></div>
+            <div className="w-16 sm:w-24 h-1 gradient-primary mx-auto rounded-full" aria-hidden="true"></div>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
@@ -220,13 +224,13 @@ export function About({ personalInfo }: AboutSectionProps) {
             <motion.div variants={imageVariants} className="relative order-2 lg:order-1">
               <div className="relative mx-auto w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
                 {/* Background decoration */}
-                <div className="absolute inset-0 gradient-primary rounded-full blur-3xl opacity-20 animate-pulse-glow"></div>
+                <div className="absolute inset-0 gradient-primary rounded-full blur-3xl opacity-20 animate-pulse-glow" aria-hidden="true"></div>
                 
                 {/* Main image container */}
                 <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white dark:border-gray-700 shadow-2xl">
                   <Image
                     src={personalInfo.avatar}
-                    alt={`${personalInfo.name} - Professional Photo`}
+                    alt={`${personalInfo.name} - Professional portrait showing a confident developer`}
                     fill
                     className="object-cover hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 640px) 256px, (max-width: 1024px) 320px, 384px"
@@ -234,7 +238,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                   />
                   
                   {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" aria-hidden="true"></div>
                 </div>
 
                 {/* Floating elements */}
@@ -242,6 +246,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                   className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 w-12 h-12 sm:w-16 sm:h-16 gradient-accent rounded-full flex items-center justify-center shadow-lg"
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                  aria-hidden="true"
                 >
                   <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                 </motion.div>
@@ -250,6 +255,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                   className="absolute -bottom-2 -left-2 sm:-bottom-4 sm:-left-4 w-10 h-10 sm:w-12 sm:h-12 bg-accent-green rounded-full flex items-center justify-center shadow-lg"
                   animate={{ y: [-5, 5, -5] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  aria-hidden="true"
                 >
                   <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </motion.div>
@@ -269,11 +275,14 @@ export function About({ personalInfo }: AboutSectionProps) {
               </div>
 
               {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="grid grid-cols-2 gap-3 sm:gap-4" role="group" aria-label="Professional statistics">
                 <Card variant="glass" padding="md" hover>
                   <CardContent>
                     <div className="text-center">
-                      <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1 sm:mb-2">
+                      <div 
+                        className="text-2xl sm:text-3xl font-bold gradient-text mb-1 sm:mb-2"
+                        aria-label={`${totalExperience} plus years of experience`}
+                      >
                         {totalExperience}+
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -286,7 +295,10 @@ export function About({ personalInfo }: AboutSectionProps) {
                 <Card variant="glass" padding="md" hover>
                   <CardContent>
                     <div className="text-center">
-                      <div className="text-2xl sm:text-3xl font-bold gradient-text mb-1 sm:mb-2">
+                      <div 
+                        className="text-2xl sm:text-3xl font-bold gradient-text mb-1 sm:mb-2"
+                        aria-label="50 plus projects completed"
+                      >
                         50+
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -299,16 +311,22 @@ export function About({ personalInfo }: AboutSectionProps) {
 
               {/* Location */}
               <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 flex-shrink-0" />
-                <span className="text-base sm:text-lg">{personalInfo.location}</span>
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
+                <span className="text-base sm:text-lg" aria-label={`Based in ${personalInfo.location}`}>
+                  {personalInfo.location}
+                </span>
               </div>
 
               {/* Experience Highlight */}
               <Card variant="elevated" padding="lg">
                 <CardContent>
                   <div className="flex items-start gap-3 sm:gap-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 gradient-primary rounded-full flex items-center justify-center flex-shrink-0">
-                      <Award className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                    <div 
+                      className="w-10 h-10 sm:w-12 sm:h-12 gradient-primary rounded-full flex items-center justify-center flex-shrink-0"
+                      role="img"
+                      aria-label="Professional experience icon"
+                    >
+                      <Award className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">
@@ -320,14 +338,23 @@ export function About({ personalInfo }: AboutSectionProps) {
                         </strong>, I have successfully delivered scalable web applications 
                         and led technical initiatives that drive business growth.
                       </p>
-                      <div className="flex flex-wrap gap-1 sm:gap-2">
-                        <span className="px-2 sm:px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-xs sm:text-sm font-medium">
+                      <div className="flex flex-wrap gap-1 sm:gap-2" role="list" aria-label="Key expertise areas">
+                        <span 
+                          className="px-2 sm:px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-xs sm:text-sm font-medium"
+                          role="listitem"
+                        >
                           Full Stack Development
                         </span>
-                        <span className="px-2 sm:px-3 py-1 bg-accent-purple/10 text-accent-purple rounded-full text-xs sm:text-sm font-medium">
+                        <span 
+                          className="px-2 sm:px-3 py-1 bg-accent-purple/10 text-accent-purple rounded-full text-xs sm:text-sm font-medium"
+                          role="listitem"
+                        >
                           Team Leadership
                         </span>
-                        <span className="px-2 sm:px-3 py-1 bg-accent-green/10 text-accent-green rounded-full text-xs sm:text-sm font-medium">
+                        <span 
+                          className="px-2 sm:px-3 py-1 bg-accent-green/10 text-accent-green rounded-full text-xs sm:text-sm font-medium"
+                          role="listitem"
+                        >
                           Performance Optimization
                         </span>
                       </div>
@@ -344,8 +371,9 @@ export function About({ personalInfo }: AboutSectionProps) {
                 <Button
                   variant="primary"
                   size="lg"
-                  leftIcon={<Download className="w-4 h-4 sm:w-5 sm:h-5" />}
+                  leftIcon={<Download className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />}
                   className="w-full sm:w-auto min-h-[48px]"
+                  aria-label={`Download ${personalInfo.name}'s resume as PDF`}
                   onClick={() => {
                     // Create a temporary link to download the resume
                     const link = document.createElement('a');

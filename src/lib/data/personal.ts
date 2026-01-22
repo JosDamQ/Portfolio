@@ -13,6 +13,5 @@ export const contactInfo: ContactInfo = {
   email: "jq221880dam@gmail.com",
   linkedin: "https://linkedin.com/in/josuegarciada",
   github: "https://github.com/JosDamQ",
-  twitter: "https://twitter.com/alex_dev",
   website: "https://alexrodriguez.dev"
 };

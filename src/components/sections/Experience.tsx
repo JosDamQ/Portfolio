@@ -64,10 +64,14 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
       className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      role="listitem"
     >
       {/* Timeline Line */}
-      <div className="absolute left-6 top-16 w-0.5 bg-gradient-to-b from-primary-400 to-primary-200 dark:from-primary-500 dark:to-primary-700 h-full z-0" 
-           style={{ display: isLast ? 'none' : 'block' }} />
+      <div 
+        className="absolute left-6 top-16 w-0.5 bg-gradient-to-b from-primary-400 to-primary-200 dark:from-primary-500 dark:to-primary-700 h-full z-0" 
+        style={{ display: isLast ? 'none' : 'block' }}
+        aria-hidden="true"
+      />
       
       {/* Timeline Dot */}
       <motion.div
@@ -87,6 +91,8 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
           ]
         } : {}}
         transition={{ duration: 2, repeat: experience.current ? Infinity : 0 }}
+        role="img"
+        aria-label={experience.current ? 'Current position indicator' : 'Timeline position'}
       />
 
       {/* Experience Card */}
@@ -112,6 +118,8 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full"
+                      role="status"
+                      aria-label="Current position"
                     >
                       Actual
                     </motion.span>
@@ -124,26 +132,33 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
                 
                 <div className="flex flex-wrap items-center gap-4 text-sm text-secondary-600 dark:text-secondary-400">
                   <div className="flex items-center gap-1">
-                    <Calendar className="w-4 h-4" />
-                    <span>{formatDuration(experience.startDate, experience.endDate)}</span>
+                    <Calendar className="w-4 h-4" aria-hidden="true" />
+                    <span aria-label={`Employment period: ${formatDuration(experience.startDate, experience.endDate)}`}>
+                      {formatDuration(experience.startDate, experience.endDate)}
+                    </span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock className="w-4 h-4" />
-                    <span>{calculateDuration(experience.startDate, experience.endDate)}</span>
+                    <Clock className="w-4 h-4" aria-hidden="true" />
+                    <span aria-label={`Duration: ${calculateDuration(experience.startDate, experience.endDate)}`}>
+                      {calculateDuration(experience.startDate, experience.endDate)}
+                    </span>
                   </div>
                 </div>
               </div>
               
               <motion.button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="p-2 rounded-lg hover:bg-secondary-100 dark:hover:bg-secondary-700 transition-colors"
+                className="p-2 rounded-lg hover:bg-secondary-100 dark:hover:bg-secondary-700 transition-colors focus-ring"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-expanded={isExpanded}
+                aria-label={isExpanded ? 'Collapse experience details' : 'Expand experience details'}
+                aria-controls={`experience-details-${experience.id}`}
               >
                 {isExpanded ? (
-                  <ChevronUp className="w-5 h-5 text-secondary-500" />
+                  <ChevronUp className="w-5 h-5 text-secondary-500" aria-hidden="true" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-secondary-500" />
+                  <ChevronDown className="w-5 h-5 text-secondary-500" aria-hidden="true" />
                 )}
               </motion.button>
             </div>
@@ -157,22 +172,24 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
             <AnimatePresence>
               {isExpanded && (
                 <motion.div
+                  id={`experience-details-${experience.id}`}
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.3 }}
                   className="space-y-6"
+                  aria-label="Detailed experience information"
                 >
                   {/* Achievements */}
                   {experience.achievements.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2 mb-3">
-                        <Award className="w-5 h-5 text-yellow-500" />
+                        <Award className="w-5 h-5 text-yellow-500" aria-hidden="true" />
                         <h4 className="font-semibold text-secondary-900 dark:text-secondary-100">
                           Logros Principales
                         </h4>
                       </div>
-                      <ul className="space-y-2">
+                      <ul className="space-y-2" role="list" aria-label="Key achievements">
                         {experience.achievements.map((achievement, idx) => (
                           <motion.li
                             key={idx}
@@ -180,8 +197,12 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.3, delay: idx * 0.1 }}
                             className="flex items-start gap-3 text-secondary-700 dark:text-secondary-300"
+                            role="listitem"
                           >
-                            <div className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0" />
+                            <div 
+                              className="w-2 h-2 bg-primary-500 rounded-full mt-2 flex-shrink-0" 
+                              aria-hidden="true"
+                            />
                             <span className="leading-relaxed">{achievement}</span>
                           </motion.li>
                         ))}
@@ -193,19 +214,26 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
                   {experience.technologies.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2 mb-3">
-                        <Code2 className="w-5 h-5 text-blue-500" />
+                        <Code2 className="w-5 h-5 text-blue-500" aria-hidden="true" />
                         <h4 className="font-semibold text-secondary-900 dark:text-secondary-100">
                           Tecnologías Utilizadas
                         </h4>
                       </div>
-                      <div className="flex flex-wrap gap-2">
+                      <div 
+                        className="flex flex-wrap gap-2"
+                        role="list"
+                        aria-label="Technologies used in this role"
+                      >
                         {experience.technologies.map((tech, idx) => (
                           <motion.span
                             key={tech}
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.2, delay: idx * 0.05 }}
-                            className="px-3 py-1 bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 rounded-full text-sm font-medium hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-700 dark:hover:text-primary-300 transition-colors cursor-default"
+                            className="px-3 py-1 bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 rounded-full text-sm font-medium hover:bg-primary-100 dark:hover:bg-primary-900/30 hover:text-primary-700 dark:hover:text-primary-300 transition-colors cursor-default focus-ring"
+                            role="listitem"
+                            tabIndex={0}
+                            aria-label={`Technology: ${tech}`}
                           >
                             {tech}
                           </motion.span>
@@ -307,7 +335,11 @@ export function Experience({ experiences }: ExperienceSectionProps) {
   );
 
   return (
-    <section id="experience" className="py-20 bg-white dark:bg-secondary-800">
+    <section 
+      id="experience" 
+      className="py-20 bg-white dark:bg-secondary-800"
+      aria-label="Professional work experience and career history"
+    >
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -317,7 +349,7 @@ export function Experience({ experiences }: ExperienceSectionProps) {
           className="text-center mb-12"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
-            <Briefcase className="w-6 h-6 text-primary-500" />
+            <Briefcase className="w-6 h-6 text-primary-500" aria-hidden="true" />
             <span className="text-primary-500 font-medium uppercase tracking-wider text-sm">
               Trayectoria Profesional
             </span>
@@ -342,7 +374,11 @@ export function Experience({ experiences }: ExperienceSectionProps) {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="space-y-8">
+          <div 
+            className="space-y-8"
+            role="list"
+            aria-label="Professional experience timeline"
+          >
             {sortedExperiences.map((experience, index) => (
               <ExperienceCard
                 key={experience.id}
@@ -376,10 +412,12 @@ export function Experience({ experiences }: ExperienceSectionProps) {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-colors mt-6"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-colors mt-6 focus-ring"
+                style={{ color: 'white !important' }}
+                aria-label="Go to contact section to get in touch"
               >
                 Contactar
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4" aria-hidden="true" />
               </motion.a>
             </CardContent>
           </Card>

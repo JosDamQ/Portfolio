@@ -27,6 +27,7 @@ export function Modal({
   closeOnEscape = true
 }: ModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
 
   // Handle escape key
   useEffect(() => {
@@ -46,20 +47,67 @@ export function Modal({
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.body.setAttribute('aria-hidden', 'true');
     } else {
       document.body.style.overflow = 'unset';
+      document.body.removeAttribute('aria-hidden');
     }
 
     return () => {
       document.body.style.overflow = 'unset';
+      document.body.removeAttribute('aria-hidden');
     };
   }, [isOpen]);
 
   // Focus management
   useEffect(() => {
-    if (isOpen && modalRef.current) {
-      modalRef.current.focus();
+    if (isOpen) {
+      // Store the currently focused element
+      previousActiveElement.current = document.activeElement as HTMLElement;
+      
+      // Focus the modal
+      if (modalRef.current) {
+        modalRef.current.focus();
+      }
+    } else {
+      // Restore focus to the previously focused element
+      if (previousActiveElement.current) {
+        previousActiveElement.current.focus();
+      }
     }
+  }, [isOpen]);
+
+  // Trap focus within modal
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleTabKey = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab' || !modalRef.current) return;
+
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      
+      const firstElement = focusableElements[0] as HTMLElement;
+      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+
+      if (event.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleTabKey);
+    return () => document.removeEventListener('keydown', handleTabKey);
   }, [isOpen]);
 
   const sizeClasses = {
@@ -85,6 +133,10 @@ export function Modal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={title ? 'modal-title' : undefined}
+          aria-describedby="modal-content"
         >
           {/* Backdrop */}
           <motion.div
@@ -93,6 +145,7 @@ export function Modal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={handleOverlayClick}
+            aria-hidden="true"
           />
 
           {/* Modal */}
@@ -113,7 +166,10 @@ export function Modal({
             {(title || showCloseButton) && (
               <div className="flex items-center justify-between p-6 border-b border-secondary-200/20">
                 {title && (
-                  <h2 className="text-xl font-semibold text-secondary-900 dark:text-secondary-100">
+                  <h2 
+                    id="modal-title"
+                    className="text-xl font-semibold text-secondary-900 dark:text-secondary-100"
+                  >
                     {title}
                   </h2>
                 )}
@@ -123,16 +179,19 @@ export function Modal({
                     size="sm"
                     onClick={onClose}
                     className="ml-auto"
-                    aria-label="Close modal"
+                    aria-label="Close dialog"
                   >
-                    <X className="w-4 h-4" />
+                    <X className="w-4 h-4" aria-hidden="true" />
                   </Button>
                 )}
               </div>
             )}
 
             {/* Content */}
-            <div className="overflow-y-auto max-h-[calc(90vh-8rem)]">
+            <div 
+              id="modal-content"
+              className="overflow-y-auto max-h-[calc(90vh-8rem)]"
+            >
               {children}
             </div>
           </motion.div>

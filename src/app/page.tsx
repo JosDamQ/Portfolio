@@ -115,7 +115,7 @@ export default function Home() {
       />
 
       {/* Main Content */}
-      <main className="safe-area-bottom">
+      <main id="main-content" className="safe-area-bottom" role="main" aria-label="Portfolio content">
         {/* Hero Section */}
         <Hero
           personalInfo={personalInfo}
