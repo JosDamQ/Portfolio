@@ -55,7 +55,7 @@ const categoryIcons = {
 };
 
 // Icon mapping for individual skills using real technology icons
-const skillIcons: Record<string, any> = {
+const skillIcons: Record<string, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   'react': SiReact,
   'nextjs': SiNextdotjs,
   'typescript': SiTypescript,

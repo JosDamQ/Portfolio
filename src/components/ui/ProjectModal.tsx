@@ -17,7 +17,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
   // Reset image index when project changes
   useEffect(() => {
-    setCurrentImageIndex(0);
+    if (project) {
+      const timer = setTimeout(() => setCurrentImageIndex(0), 0);
+      return () => clearTimeout(timer);
+    }
   }, [project]);
 
   // Handle keyboard navigation

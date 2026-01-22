@@ -241,7 +241,7 @@ export type FormState<T> = {
 
 export type ValidationRule<T> = {
   field: keyof T;
-  validator: (value: any) => string | null;
+  validator: (value: unknown) => string | null;
 };
 
 // Navigation utility types
@@ -271,7 +271,7 @@ export type LoadingState = 'idle' | 'loading' | 'success' | 'error';
 export interface ComponentState {
   isLoading: boolean;
   error: string | null;
-  data: any;
+  data: unknown;
 }
 
 // Event handler types

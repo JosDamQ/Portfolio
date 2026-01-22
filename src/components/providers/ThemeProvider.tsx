@@ -29,16 +29,23 @@ export function ThemeProvider({
   children, 
   defaultTheme = 'system' 
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light');
-
-  useEffect(() => {
-    // Get theme from localStorage on mount
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme') as Theme;
+      return savedTheme || defaultTheme;
     }
-  }, []);
+    return defaultTheme;
+  });
+  
+  // Calculate resolved theme based on current theme
+  const resolvedTheme: 'light' | 'dark' = (() => {
+    if (typeof window === 'undefined') return 'light';
+    
+    if (theme === 'system') {
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return theme;
+  })();
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -46,24 +53,12 @@ export function ThemeProvider({
     // Remove previous theme classes
     root.classList.remove('light', 'dark');
     
-    let newResolvedTheme: 'light' | 'dark';
-    
-    if (theme === 'system') {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
-        ? 'dark'
-        : 'light';
-      newResolvedTheme = systemTheme;
-    } else {
-      newResolvedTheme = theme;
-    }
-    
     // Add new theme class
-    root.classList.add(newResolvedTheme);
-    setResolvedTheme(newResolvedTheme);
+    root.classList.add(resolvedTheme);
     
     // Save to localStorage
     localStorage.setItem('theme', theme);
-  }, [theme]);
+  }, [theme, resolvedTheme]);
 
   useEffect(() => {
     // Listen for system theme changes
@@ -71,12 +66,8 @@ export function ThemeProvider({
     
     const handleChange = () => {
       if (theme === 'system') {
-        const newResolvedTheme = mediaQuery.matches ? 'dark' : 'light';
-        setResolvedTheme(newResolvedTheme);
-        
-        const root = window.document.documentElement;
-        root.classList.remove('light', 'dark');
-        root.classList.add(newResolvedTheme);
+        // Force re-render by updating theme state
+        setTheme('system');
       }
     };
 

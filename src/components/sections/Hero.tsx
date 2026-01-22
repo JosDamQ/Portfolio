@@ -295,15 +295,19 @@ function ParticleField() {
   }>>([]);
 
   useEffect(() => {
-    // Generate particles only on client side
-    const newParticles = Array.from({ length: 20 }, (_, i) => ({
-      id: i,
-      left: Math.random() * 100,
-      top: Math.random() * 100,
-      duration: 3 + Math.random() * 2,
-      delay: Math.random() * 2,
-    }));
-    setParticles(newParticles);
+    // Generate particles only on client side using a timeout to avoid setState in effect
+    const timer = setTimeout(() => {
+      const newParticles = Array.from({ length: 20 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        top: Math.random() * 100,
+        duration: 3 + Math.random() * 2,
+        delay: Math.random() * 2,
+      }));
+      setParticles(newParticles);
+    }, 0);
+    
+    return () => clearTimeout(timer);
   }, []);
 
   if (particles.length === 0) {

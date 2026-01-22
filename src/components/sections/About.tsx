@@ -17,7 +17,9 @@ export function About({ personalInfo }: AboutSectionProps) {
   const totalExperience = getTotalExperienceYears();
 
   useEffect(() => {
-    setMounted(true);
+    // Use a timeout to avoid setState in effect
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   const containerVariants = {
