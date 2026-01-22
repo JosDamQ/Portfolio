@@ -66,9 +66,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     };
 
     const sizeClasses = {
-      sm: 'px-3 py-1.5 text-sm gap-1.5',
-      md: 'px-4 py-2 text-base gap-2',
-      lg: 'px-6 py-3 text-lg gap-2.5'
+      sm: 'px-3 py-2 text-sm gap-1.5 min-h-[44px]',
+      md: 'px-4 py-2.5 text-base gap-2 min-h-[48px]',
+      lg: 'px-6 py-3.5 text-lg gap-2.5 min-h-[48px]'
     };
 
     const classes = [

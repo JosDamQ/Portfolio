@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({
   const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Account for fixed header
+      const headerHeight = window.innerWidth >= 1024 ? 80 : 64; // Responsive header height
       const elementPosition = element.offsetTop - headerHeight;
       
       window.scrollTo({
@@ -51,7 +51,7 @@ const Header: React.FC<HeaderProps> = ({
     }
   };
 
-  // Close mobile menu when clicking outside
+  // Close mobile menu when clicking outside or on escape
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
@@ -60,85 +60,150 @@ const Header: React.FC<HeaderProps> = ({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isMobileMenuOpen) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
+    };
   }, [isMobileMenuOpen]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg'
-          : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
-      }`}
-    >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo/Brand */}
-          <div
-            className="flex-shrink-0 cursor-pointer"
-            onClick={() => handleSectionClick('hero')}
-          >
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 safe-area-top ${
+          isScrolled
+            ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg'
+            : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm'
+        }`}
+      >
+        <div className="container-responsive">
+          <div className="flex items-center justify-between h-16 lg:h-20">
+            {/* Logo/Brand - Touch-friendly */}
+            <button
+              className="flex-shrink-0 min-h-[48px] min-w-[48px] focus-ring rounded-lg p-2 -m-2"
+              onClick={() => handleSectionClick('hero')}
+              aria-label="Go to home section"
+            >
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm sm:text-base">
+                    {personalInfo.name.charAt(0)}
+                  </span>
+                </div>
+                <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
+                  {personalInfo.name.split(' ')[0]}
+                </span>
+              </div>
+            </button>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:block">
+              <Navigation
+                activeSection={activeSection}
+                onSectionChange={handleSectionClick}
+                sections={sections}
+              />
+            </div>
+
+            {/* Mobile Menu Button - Enhanced touch target */}
+            <div className="lg:hidden mobile-menu-container">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="min-h-[48px] min-w-[48px] focus-ring rounded-lg p-3 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                aria-expanded={isMobileMenuOpen}
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="block h-6 w-6" aria-hidden="true" />
+                ) : (
+                  <Menu className="block h-6 w-6" aria-hidden="true" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Navigation Overlay */}
+      {isMobileMenuOpen && (
+        <div className="mobile-menu-overlay lg:hidden" aria-hidden="true" />
+      )}
+
+      {/* Mobile Navigation Panel */}
+      <div
+        className={`mobile-menu-panel lg:hidden ${
+          isMobileMenuOpen ? 'open' : 'closed'
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Navigation menu"
+      >
+        <div className="flex flex-col h-full safe-area-top safe-area-bottom">
+          {/* Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center space-x-2">
               <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-sm">
                   {personalInfo.name.charAt(0)}
                 </span>
               </div>
-              <span className="text-xl font-bold text-gray-900 dark:text-white">
-                {personalInfo.name.split(' ')[0]}
+              <span className="text-lg font-bold text-gray-900 dark:text-white">
+                Navigation
               </span>
             </div>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <Navigation
-              activeSection={activeSection}
-              onSectionChange={handleSectionClick}
-              sections={sections}
-            />
-          </div>
-
-          {/* Mobile Menu Button */}
-          <div className="md:hidden mobile-menu-container">
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 transition-colors"
-              aria-expanded="false"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="min-h-[48px] min-w-[48px] focus-ring rounded-lg p-2 text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label="Close menu"
             >
-              <span className="sr-only">Open main menu</span>
-              {isMobileMenuOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
+              <X className="h-6 w-6" />
             </button>
+          </div>
 
-            {/* Mobile Navigation Menu */}
-            {isMobileMenuOpen && (
-              <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2">
-                <div className="px-2 space-y-1">
-                  {sections.map((section) => (
-                    <button
-                      key={section.id}
-                      onClick={() => handleSectionClick(section.id)}
-                      className={`block w-full text-left px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                        activeSection === section.id
-                          ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
-                      }`}
-                    >
-                      {section.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
+          {/* Navigation Links */}
+          <nav className="flex-1 px-4 py-6 space-y-2 touch-scroll overflow-y-auto">
+            {sections.map((section, index) => (
+              <button
+                key={section.id}
+                onClick={() => handleSectionClick(section.id)}
+                className={`w-full text-left min-h-[48px] px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 focus-ring ${
+                  activeSection === section.id
+                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
+                }`}
+                style={{
+                  animationDelay: `${index * 50}ms`,
+                }}
+              >
+                {section.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* Footer */}
+          <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+            <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
+              {personalInfo.name} • Portfolio
+            </p>
           </div>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 

@@ -28,11 +28,11 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
       <Card
         variant="glass"
         hover
-        className="h-full overflow-hidden"
+        className="h-full overflow-hidden min-h-[44px] cursor-pointer"
         onClick={() => onViewDetails(project)}
       >
         {/* Project Image */}
-        <div className="relative h-48 overflow-hidden rounded-t-xl">
+        <div className="relative h-40 sm:h-48 overflow-hidden rounded-t-xl">
           {project.images.length > 0 ? (
             <img
               src={project.images[0]}
@@ -41,7 +41,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center">
-              <span className="text-white text-2xl font-bold">
+              <span className="text-white text-xl sm:text-2xl font-bold">
                 {project.title.charAt(0)}
               </span>
             </div>
@@ -49,7 +49,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
           
           {/* Featured Badge */}
           {project.featured && (
-            <div className="absolute top-3 right-3">
+            <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
               <span className="px-2 py-1 bg-accent-500 text-white text-xs font-medium rounded-full">
                 Featured
               </span>
@@ -57,7 +57,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
           )}
 
           {/* Category Badge */}
-          <div className="absolute top-3 left-3">
+          <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
             <span className="px-2 py-1 bg-black/50 text-white text-xs font-medium rounded-full capitalize">
               {project.category}
             </span>
@@ -65,17 +65,17 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
         </div>
 
         {/* Project Content */}
-        <div className="p-6">
-          <h3 className="text-xl font-semibold text-secondary-900 dark:text-secondary-100 mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+        <div className="p-4 sm:p-6">
+          <h3 className="text-lg sm:text-xl font-semibold text-secondary-900 dark:text-secondary-100 mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">
             {project.title}
           </h3>
           
-          <p className="text-secondary-600 dark:text-secondary-400 mb-4 line-clamp-3">
+          <p className="text-sm sm:text-base text-secondary-600 dark:text-secondary-400 mb-3 sm:mb-4 line-clamp-3">
             {project.description}
           </p>
 
           {/* Technologies */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
             {project.technologies.slice(0, 4).map((tech) => (
               <span
                 key={tech}
@@ -97,12 +97,12 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
               <Button
                 variant="outline"
                 size="sm"
-                leftIcon={<ExternalLink className="w-4 h-4" />}
+                leftIcon={<ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />}
                 onClick={(e) => {
                   e.stopPropagation();
                   window.open(project.demoUrl, '_blank');
                 }}
-                className="flex-1"
+                className="flex-1 text-xs sm:text-sm min-h-[44px]"
               >
                 Demo
               </Button>
@@ -111,12 +111,12 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
               <Button
                 variant="ghost"
                 size="sm"
-                leftIcon={<Github className="w-4 h-4" />}
+                leftIcon={<Github className="w-3 h-3 sm:w-4 sm:h-4" />}
                 onClick={(e) => {
                   e.stopPropagation();
                   window.open(project.githubUrl, '_blank');
                 }}
-                className="flex-1"
+                className="flex-1 text-xs sm:text-sm min-h-[44px]"
               >
                 Code
               </Button>
@@ -152,20 +152,20 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
   ];
 
   return (
-    <section id="projects" className="py-20 px-6 bg-secondary-50 dark:bg-secondary-900/50">
-      <div className="container mx-auto max-w-7xl">
+    <section id="projects" className="py-12 sm:py-16 lg:py-20 spacing-responsive-md bg-secondary-50 dark:bg-secondary-900/50">
+      <div className="container-responsive">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-4xl font-bold text-secondary-900 dark:text-secondary-100 mb-4">
+          <h2 className="text-responsive-3xl font-bold text-secondary-900 dark:text-secondary-100 mb-3 sm:mb-4">
             Featured Projects
           </h2>
-          <p className="text-lg text-secondary-600 dark:text-secondary-400 max-w-2xl mx-auto">
+          <p className="text-responsive-base text-secondary-600 dark:text-secondary-400 max-w-2xl mx-auto">
             A showcase of my recent work, featuring web applications, mobile apps, and development tools
             built with modern technologies.
           </p>
@@ -177,7 +177,7 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 px-2"
         >
           {filterOptions.map((option) => (
             <Button
@@ -185,8 +185,8 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
               variant={activeFilter === option.value ? 'primary' : 'outline'}
               size="sm"
               onClick={() => setActiveFilter(option.value)}
-              leftIcon={<Filter className="w-4 h-4" />}
-              className="transition-all duration-300"
+              leftIcon={<Filter className="w-3 h-3 sm:w-4 sm:h-4" />}
+              className="transition-all duration-300 text-xs sm:text-sm min-h-[44px]"
             >
               {option.label}
             </Button>
@@ -201,7 +201,7 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-responsive-3 gap-4 sm:gap-6 lg:gap-8"
           >
             {sortedProjects.map((project, index) => (
               <ProjectCard
@@ -219,9 +219,9 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center py-12"
+            className="text-center py-8 sm:py-12"
           >
-            <p className="text-secondary-600 dark:text-secondary-400 text-lg">
+            <p className="text-secondary-600 dark:text-secondary-400 text-responsive-base">
               No projects found for the selected category.
             </p>
           </motion.div>
@@ -234,12 +234,13 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-center mt-12"
+            className="text-center mt-8 sm:mt-12"
           >
             <Button
               variant="outline"
               size="lg"
               onClick={() => setActiveFilter('all')}
+              className="min-h-[48px]"
             >
               View All Projects
             </Button>

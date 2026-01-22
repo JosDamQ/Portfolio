@@ -25,7 +25,8 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 100; // Offset for header
+      const headerHeight = window.innerWidth >= 1024 ? 80 : 64;
+      const scrollPosition = window.scrollY + headerHeight + 20; // Responsive offset for header
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
@@ -40,9 +41,13 @@ export default function Home() {
     };
 
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleScroll); // Re-calculate on resize
     handleScroll(); // Initial check
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
   }, []);
 
   // Handle smooth scrolling to sections
@@ -50,7 +55,7 @@ export default function Home() {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Approximate header height
+      const headerHeight = window.innerWidth >= 1024 ? 80 : 64; // Responsive header height
       const elementPosition = element.offsetTop - headerHeight;
       
       window.scrollTo({
@@ -101,7 +106,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 touch-scroll">
       {/* Header */}
       <Header
         personalInfo={personalInfo}
@@ -110,7 +115,7 @@ export default function Home() {
       />
 
       {/* Main Content */}
-      <main>
+      <main className="safe-area-bottom">
         {/* Hero Section */}
         <Hero
           personalInfo={personalInfo}
