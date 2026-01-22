@@ -5,7 +5,7 @@ export const personalInfo: PersonalInfo = {
   title: "Full Stack Developer",
   summary: "Desarrollador apasionado con 2+ años de experiencia creando aplicaciones web modernas y escalables. Especializado en React, Node.js y tecnologías cloud, con un enfoque en la experiencia del usuario y las mejores prácticas de desarrollo.",
   avatar: "https://github.com/JosDamQ.png?size=400",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "/CV_ES.pdf",
   location: "Guatemala, Guatemala"
 };
 
