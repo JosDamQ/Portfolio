@@ -44,3 +44,6 @@ export type {
   CharacterAnimationProps, 
   GradientTextProps 
 } from './AnimatedText';
+
+export { ProjectModal } from './ProjectModal';
+export type { ProjectModalProps } from './ProjectModal';

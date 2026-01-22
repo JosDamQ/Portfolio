@@ -76,8 +76,8 @@
   --color-secondary-900: var(--secondary-900);
   
   /* Accent colors */
-  --color-accent-purple: var(--accent-purple);
-  --color-accent-purple-dark: var(--accent-purple-dark);
+  --color-accent-500: var(--accent-purple);
+  --color-accent-600: var(--accent-purple-dark);
   --color-accent-pink: var(--accent-pink);
   --color-accent-green: var(--accent-green);
 }
@@ -310,4 +310,33 @@ html {
   .focus-ring {
     @apply focus:ring-offset-gray-900;
   }
+}
+
+/* Text truncation utilities */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

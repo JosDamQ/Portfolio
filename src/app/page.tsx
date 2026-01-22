@@ -2,11 +2,15 @@
 
 import { useState, useEffect } from 'react';
 import { Header, Footer } from '@/components/layout';
-import { Hero, About, Skills, Experience } from '@/components/sections';
-import { personalInfo, contactInfo, skills, skillCategories, experiences } from '@/lib/data';
+import { Hero, About, Skills, Experience, Projects } from '@/components/sections';
+import { ProjectModal } from '@/components/ui';
+import { personalInfo, contactInfo, skills, skillCategories, experiences, projects } from '@/lib/data';
+import { Project } from '@/lib/types';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
 
   // Handle scroll-based section detection
   useEffect(() => {
@@ -47,6 +51,18 @@ export default function Home() {
     }
   };
 
+  // Handle project selection
+  const handleProjectSelect = (project: Project) => {
+    setSelectedProject(project);
+    setIsProjectModalOpen(true);
+  };
+
+  // Handle project modal close
+  const handleProjectModalClose = () => {
+    setIsProjectModalOpen(false);
+    setSelectedProject(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
@@ -75,39 +91,10 @@ export default function Home() {
         <Experience experiences={experiences} />
 
         {/* Projects Section */}
-        <section id="projects" className="py-16 px-6">
-          <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-              Projects
-            </h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                  Project 1
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Project description coming soon...
-                </p>
-              </div>
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                  Project 2
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Project description coming soon...
-                </p>
-              </div>
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                  Project 3
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Project description coming soon...
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Projects 
+          projects={projects} 
+          onProjectSelect={handleProjectSelect}
+        />
 
         {/* Contact Section */}
         <section id="contact" className="py-16 px-6 bg-white dark:bg-gray-800">
@@ -148,6 +135,13 @@ export default function Home() {
       <Footer
         contactInfo={contactInfo}
         personalInfo={personalInfo}
+      />
+
+      {/* Project Modal */}
+      <ProjectModal
+        project={selectedProject}
+        isOpen={isProjectModalOpen}
+        onClose={handleProjectModalClose}
       />
     </div>
   );
