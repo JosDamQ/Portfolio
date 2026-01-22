@@ -156,7 +156,7 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
     >
       <div 
         className={`
-          p-6 rounded-xl border transition-all duration-300 cursor-pointer relative overflow-hidden
+          p-4 sm:p-6 rounded-xl border transition-all duration-300 cursor-pointer relative overflow-hidden
           ${isHighlighted 
             ? 'border-primary-400 bg-gradient-to-br from-primary-50 to-primary-100/50 dark:from-primary-900/30 dark:to-primary-800/20 dark:border-primary-500' 
             : 'border-secondary-200 bg-white dark:bg-secondary-800 dark:border-secondary-700'
@@ -167,54 +167,56 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
         aria-label={`${skill.name} skill with ${skill.yearsOfExperience} years of experience${isHighlighted ? ' - highlighted for web development' : ''}`}
         tabIndex={0}
       >
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            {/* Skill Icon with technology-specific color */}
-            <div 
-              className={`
-                p-3 rounded-lg transition-all duration-300 shadow-sm
-                ${isHovered ? 'scale-110 rotate-3 shadow-lg' : ''}
-              `}
-              style={{ 
-                backgroundColor: skillColor + '20',
-                color: skillColor,
-                border: `2px solid ${skillColor}40`
-              }}
-              role="img"
-              aria-label={`${skill.name} technology icon`}
-            >
-              <IconComponent className="w-8 h-8" aria-hidden="true" />
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              {/* Skill Icon with technology-specific color */}
+              <div 
+                className={`
+                  p-2.5 rounded-lg transition-all duration-300 shadow-sm flex-shrink-0
+                  ${isHovered ? 'scale-110 rotate-3 shadow-lg' : ''}
+                `}
+                style={{ 
+                  backgroundColor: skillColor + '20',
+                  color: skillColor,
+                  border: `2px solid ${skillColor}40`
+                }}
+                role="img"
+                aria-label={`${skill.name} technology icon`}
+              >
+                <IconComponent className="w-6 h-6 sm:w-8 sm:h-8" aria-hidden="true" />
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <h4 className={`font-semibold text-lg sm:text-xl truncate ${
+                  isHighlighted 
+                    ? 'text-primary-700 dark:text-primary-300' 
+                    : 'text-secondary-900 dark:text-secondary-100'
+                }`}>
+                  {skill.name}
+                </h4>
+                <p className="text-xs sm:text-sm text-secondary-500 dark:text-secondary-400 mt-1">
+                  {skill.yearsOfExperience} {skill.yearsOfExperience === 1 ? 'año' : 'años'} de experiencia
+                </p>
+              </div>
             </div>
             
-            <div>
-              <h4 className={`font-semibold text-xl ${
-                isHighlighted 
-                  ? 'text-primary-700 dark:text-primary-300' 
-                  : 'text-secondary-900 dark:text-secondary-100'
-              }`}>
-                {skill.name}
-              </h4>
-              <p className="text-sm text-secondary-500 dark:text-secondary-400 mt-1">
-                {skill.yearsOfExperience} {skill.yearsOfExperience === 1 ? 'año' : 'años'} de experiencia
-              </p>
-            </div>
+            {isHighlighted && (
+              <motion.div
+                initial={{ scale: 0, rotate: -180 }}
+                animate={{ scale: 1, rotate: 0 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30, delay: index * 0.1 }}
+                className="flex items-center gap-1 flex-shrink-0 ml-2"
+                role="status"
+                aria-label="Highlighted for web development"
+              >
+                <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 fill-current" aria-hidden="true" />
+                <span className="text-xs sm:text-sm font-medium text-yellow-600 dark:text-yellow-400 whitespace-nowrap">
+                  Web Dev
+                </span>
+              </motion.div>
+            )}
           </div>
-          
-          {isHighlighted && (
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30, delay: index * 0.1 }}
-              className="flex items-center gap-1"
-              role="status"
-              aria-label="Highlighted for web development"
-            >
-              <Star className="w-6 h-6 text-yellow-500 fill-current" aria-hidden="true" />
-              <span className="text-sm font-medium text-yellow-600 dark:text-yellow-400">
-                Web Dev
-              </span>
-            </motion.div>
-          )}
         </div>
       </div>
     </motion.div>
