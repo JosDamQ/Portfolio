@@ -2,15 +2,24 @@
 
 import { useState, useEffect } from 'react';
 import { Header, Footer } from '@/components/layout';
-import { Hero, About, Skills, Experience, Projects } from '@/components/sections';
+import { Hero, About, Skills, Experience, Projects, Contact } from '@/components/sections';
 import { ProjectModal } from '@/components/ui';
 import { personalInfo, contactInfo, skills, skillCategories, experiences, projects } from '@/lib/data';
-import { Project } from '@/lib/types';
+import { Project, ContactFormData } from '@/lib/types';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    const initEmailJS = async () => {
+      const emailjs = (await import('@emailjs/browser')).default;
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
+    };
+    initEmailJS();
+  }, []);
 
   // Handle scroll-based section detection
   useEffect(() => {
@@ -63,6 +72,34 @@ export default function Home() {
     setSelectedProject(null);
   };
 
+  // Handle contact form submission
+  const handleContactFormSubmit = async (data: ContactFormData): Promise<void> => {
+    // Use EmailJS for real email sending
+    const emailjs = (await import('@emailjs/browser')).default;
+    
+    console.log('Enviando email con EmailJS desde page.tsx...');
+    console.log('Service ID:', process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
+    console.log('Template ID:', process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID);
+    console.log('Public Key:', process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+    console.log('Form data:', data);
+
+    const result = await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+      {
+        from_name: data.name,
+        from_email: data.email,
+        subject: data.subject,
+        message: data.message,
+        to_email: 'damian.garcia.12.2004@gmail.com', // Prueba con tu otro email
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+    );
+
+    console.log('EmailJS result:', result);
+    // No retornamos nada para cumplir con Promise<void>
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
@@ -97,38 +134,10 @@ export default function Home() {
         />
 
         {/* Contact Section */}
-        <section id="contact" className="py-16 px-6 bg-white dark:bg-gray-800">
-          <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-              Contact
-            </h2>
-            <div className="max-w-md mx-auto">
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Name"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                />
-                <textarea
-                  placeholder="Message"
-                  rows={4}
-                  className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white"
-                ></textarea>
-                <button
-                  type="submit"
-                  className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-        </section>
+        <Contact 
+          contactInfo={contactInfo}
+          onFormSubmit={handleContactFormSubmit}
+        />
       </main>
 
       {/* Footer */}
