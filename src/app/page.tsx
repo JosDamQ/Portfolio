@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Header, Footer } from '@/components/layout';
+import { Hero } from '@/components/sections';
 import { personalInfo, contactInfo } from '@/lib/data';
 
 export default function Home() {
@@ -31,37 +32,38 @@ export default function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle smooth scrolling to sections
+  const handleSectionChange = (sectionId: string) => {
+    setActiveSection(sectionId);
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const headerHeight = 80; // Approximate header height
+      const elementPosition = element.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Header */}
       <Header
         personalInfo={personalInfo}
         activeSection={activeSection}
-        onSectionChange={setActiveSection}
+        onSectionChange={handleSectionChange}
       />
 
       {/* Main Content */}
       <main>
         {/* Hero Section */}
-        <section id="hero" className="pt-20 pb-16 px-6">
-          <div className="container mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              Developer Portfolio
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">
-              Full Stack Developer with 2+ years of experience creating modern
-              web applications
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">
-                View Projects
-              </button>
-              <button className="border border-gray-300 text-gray-700 dark:text-gray-300 dark:border-gray-600 px-8 py-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">
-                Download Resume
-              </button>
-            </div>
-          </div>
-        </section>
+        <Hero
+          personalInfo={personalInfo}
+          contactInfo={contactInfo}
+          onScrollToSection={handleSectionChange}
+        />
 
         {/* About Section */}
         <section id="about" className="py-16 px-6 bg-white dark:bg-gray-800">

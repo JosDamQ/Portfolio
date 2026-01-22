@@ -1,18 +1,18 @@
 import { PersonalInfo, ContactInfo } from '../types';
 
 export const personalInfo: PersonalInfo = {
-  name: "Josue Rodriguez",
+  name: "Josue García",
   title: "Full Stack Developer",
   summary: "Desarrollador apasionado con 2+ años de experiencia creando aplicaciones web modernas y escalables. Especializado en React, Node.js y tecnologías cloud, con un enfoque en la experiencia del usuario y las mejores prácticas de desarrollo.",
-  avatar: "/images/profile.jpg",
+  avatar: "https://github.com/JosDamQ.png?size=400",
   resumeUrl: "/resume.pdf",
-  location: "Madrid, España"
+  location: "Guatemala, Guatemala"
 };
 
 export const contactInfo: ContactInfo = {
-  email: "alex.rodriguez@email.com",
+  email: "jq21880dam@gmail.com",
   linkedin: "https://linkedin.com/in/alex-rodriguez-dev",
-  github: "https://github.com/alex-rodriguez",
+  github: "https://github.com/JosDamQ",
   twitter: "https://twitter.com/alex_dev",
   website: "https://alexrodriguez.dev"
 };
