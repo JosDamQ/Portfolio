@@ -377,7 +377,7 @@ export function Experience({ experiences }: ExperienceSectionProps) {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-colors"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-primary-500 hover:bg-primary-600 text-white rounded-lg font-medium transition-colors mt-6"
               >
                 Contactar
                 <ExternalLink className="w-4 h-4" />
