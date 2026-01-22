@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { Header, Footer } from '@/components/layout';
-import { Hero, About, Skills } from '@/components/sections';
-import { personalInfo, contactInfo, skills, skillCategories } from '@/lib/data';
+import { Hero, About, Skills, Experience } from '@/components/sections';
+import { personalInfo, contactInfo, skills, skillCategories, experiences } from '@/lib/data';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -72,23 +72,7 @@ export default function Home() {
         <Skills skills={skills} categories={skillCategories} />
 
         {/* Experience Section */}
-        <section
-          id="experience"
-          className="py-16 px-6 bg-white dark:bg-gray-800"
-        >
-          <div className="container mx-auto">
-            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12">
-              Experience
-            </h2>
-            <div className="max-w-3xl mx-auto">
-              <div className="text-center">
-                <p className="text-lg text-gray-600 dark:text-gray-300">
-                  2+ years of professional development experience
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Experience experiences={experiences} />
 
         {/* Projects Section */}
         <section id="projects" className="py-16 px-6">

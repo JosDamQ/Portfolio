@@ -11,7 +11,7 @@ export const personalInfo: PersonalInfo = {
 
 export const contactInfo: ContactInfo = {
   email: "jq21880dam@gmail.com",
-  linkedin: "https://linkedin.com/in/alex-rodriguez-dev",
+  linkedin: "https://linkedin.com/in/josuegarciada",
   github: "https://github.com/JosDamQ",
   twitter: "https://twitter.com/alex_dev",
   website: "https://alexrodriguez.dev"
