@@ -39,7 +39,13 @@ import {
   SiVercel,
   SiNetlify,
   SiFigma,
-  SiJest
+  SiJest,
+  SiNestjs,
+  SiLaravel,
+  SiSpring,
+  SiInsomnia,
+  SiAmazon,
+  SiPostman
 } from 'react-icons/si';
 
 import { Card, CardContent, Button } from '@/components/ui';
@@ -67,11 +73,15 @@ const skillIcons: Record<string, React.ComponentType<{ className?: string; style
   'sass': SiSass,
   'nodejs': SiNodedotjs,
   'express': SiExpress,
+  'nestjs': SiNestjs,
+  'laravel': SiLaravel,
+  'springboot': SiSpring,
   'python': SiPython,
   'graphql': SiGraphql,
   'mongodb': SiMongodb,
   'postgresql': SiPostgresql,
   'mysql': SiMysql,
+  'sqlserver': Database,
   'redis': SiRedis,
   'prisma': SiPrisma,
   'mongoose': SiMongodb,
@@ -82,12 +92,14 @@ const skillIcons: Record<string, React.ComponentType<{ className?: string; style
   'netlify': SiNetlify,
   'figma': SiFigma,
   'jest': SiJest,
+  'insomnia': SiInsomnia,
   'fastapi': Server,
   'api': Server,
+  'webhooks': Server,
   'socketio': Server,
   'vscode': Code,
-  'aws': Server,
-  'postman': Code,
+  'aws': SiAmazon,
+  'postman': SiPostman,
   'cypress': Code,
   'agile': Wrench,
   'design': Monitor,
@@ -109,11 +121,15 @@ const skillColors: Record<string, string> = {
   'sass': '#CC6699',
   'nodejs': '#339933',
   'express': '#000000',
+  'nestjs': '#E0234E',
+  'laravel': '#FF2D20',
+  'springboot': '#6DB33F',
   'python': '#3776AB',
   'graphql': '#E10098',
   'mongodb': '#47A248',
   'postgresql': '#336791',
   'mysql': '#4479A1',
+  'sqlserver': '#CC2927',
   'redis': '#DC382D',
   'prisma': '#2D3748',
   'git': '#F05032',
@@ -122,7 +138,11 @@ const skillColors: Record<string, string> = {
   'vercel': '#000000',
   'netlify': '#00C7B7',
   'figma': '#F24E1E',
-  'jest': '#C21325'
+  'jest': '#C21325',
+  'insomnia': '#4000BF',
+  'vscode': '#007ACC',
+  'aws': '#FF9900',
+  'postman': '#FF6C37'
 };
 
 // Web development technologies for highlighting

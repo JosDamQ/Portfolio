@@ -5,7 +5,7 @@ export const skills: Skill[] = [
   {
     name: "React",
     category: "frontend",
-    yearsOfExperience: 2.5,
+    yearsOfExperience: 3,
     icon: "react"
   },
   {
@@ -26,12 +26,12 @@ export const skills: Skill[] = [
     yearsOfExperience: 3,
     icon: "javascript"
   },
-  {
-    name: "Vue.js",
-    category: "frontend",
-    yearsOfExperience: 1,
-    icon: "vue"
-  },
+  // {
+  //   name: "Vue.js",
+  //   category: "frontend",
+  //   yearsOfExperience: 1,
+  //   icon: "vue"
+  // },
   {
     name: "HTML5",
     category: "frontend",
@@ -56,55 +56,55 @@ export const skills: Skill[] = [
     yearsOfExperience: 2.5,
     icon: "sass"
   },
-  {
-    name: "React Native",
-    category: "frontend",
-    yearsOfExperience: 1,
-    icon: "react"
-  },
+  // {
+  //   name: "React Native",
+  //   category: "frontend",
+  //   yearsOfExperience: 1,
+  //   icon: "react"
+  // },
 
   // Backend Skills
   {
     name: "Node.js",
     category: "backend",
-    yearsOfExperience: 2,
+    yearsOfExperience: 3,
     icon: "nodejs"
   },
   {
     name: "Express.js",
     category: "backend",
-    yearsOfExperience: 2,
+    yearsOfExperience: 3,
     icon: "express"
   },
   {
-    name: "Python",
-    category: "backend",
-    yearsOfExperience: 1.5,
-    icon: "python"
-  },
-  {
-    name: "FastAPI",
+    name: "Nest Js",
     category: "backend",
     yearsOfExperience: 1,
-    icon: "fastapi"
+    icon: "nestjs"
+  },
+  {
+    name: "Laravel",
+    category: "backend",
+    yearsOfExperience: 2,
+    icon: "laravel"
+  },
+  {
+    name: "Spring Boot",
+    category: "backend",
+    yearsOfExperience: 2,
+    icon: "springboot"
   },
   {
     name: "REST APIs",
     category: "backend",
-    yearsOfExperience: 2.5,
+    yearsOfExperience: 3,
     icon: "api"
   },
   {
-    name: "GraphQL",
+    name: "WebHooks",
     category: "backend",
     yearsOfExperience: 1,
-    icon: "graphql"
-  },
-  {
-    name: "Socket.io",
-    category: "backend",
-    yearsOfExperience: 1,
-    icon: "socketio"
+    icon: "webhooks"
   },
 
   // Database Skills
@@ -117,32 +117,20 @@ export const skills: Skill[] = [
   {
     name: "PostgreSQL",
     category: "database",
-    yearsOfExperience: 1.5,
+    yearsOfExperience: 2,
     icon: "postgresql"
   },
   {
     name: "MySQL",
     category: "database",
-    yearsOfExperience: 1,
+    yearsOfExperience: 3,
     icon: "mysql"
   },
   {
-    name: "Redis",
-    category: "database",
-    yearsOfExperience: 0.5,
-    icon: "redis"
-  },
-  {
-    name: "Prisma",
+    name: "SqlServer",
     category: "database",
     yearsOfExperience: 1,
-    icon: "prisma"
-  },
-  {
-    name: "Mongoose",
-    category: "database",
-    yearsOfExperience: 2,
-    icon: "mongoose"
+    icon: "sqlserver"
   },
 
   // Tools and Technologies
@@ -173,20 +161,14 @@ export const skills: Skill[] = [
   {
     name: "AWS",
     category: "tools",
-    yearsOfExperience: 0.5,
+    yearsOfExperience: 2,
     icon: "aws"
   },
   {
     name: "Vercel",
     category: "tools",
-    yearsOfExperience: 1.5,
+    yearsOfExperience: 2,
     icon: "vercel"
-  },
-  {
-    name: "Netlify",
-    category: "tools",
-    yearsOfExperience: 1,
-    icon: "netlify"
   },
   {
     name: "Figma",
@@ -201,23 +183,23 @@ export const skills: Skill[] = [
     icon: "postman"
   },
   {
+    name: "Insomnia",
+    category: "tools",
+    yearsOfExperience: 2,
+    icon: "insomnia"
+  },
+  {
     name: "Jest",
     category: "tools",
     yearsOfExperience: 1.5,
     icon: "jest"
-  },
-  {
-    name: "Cypress",
-    category: "tools",
-    yearsOfExperience: 0.5,
-    icon: "cypress"
   },
 
   // Other Skills
   {
     name: "Agile/Scrum",
     category: "other",
-    yearsOfExperience: 2,
+    yearsOfExperience: 3,
     icon: "agile"
   },
   {
@@ -229,19 +211,19 @@ export const skills: Skill[] = [
   {
     name: "SEO",
     category: "other",
-    yearsOfExperience: 1.5,
+    yearsOfExperience: 1,
     icon: "seo"
   },
   {
     name: "Performance Optimization",
     category: "other",
-    yearsOfExperience: 1.5,
+    yearsOfExperience: 2,
     icon: "performance"
   },
   {
     name: "Responsive Design",
     category: "other",
-    yearsOfExperience: 2.5,
+    yearsOfExperience: 2,
     icon: "responsive"
   }
 ];
@@ -258,7 +240,7 @@ export const skillCategories: SkillCategory[] = [
     icon: "server"
   },
   {
-    name: "Database",
+    name: "Bases de datos",
     skills: skills.filter(skill => skill.category === 'database'),
     icon: "database"
   },
@@ -268,7 +250,7 @@ export const skillCategories: SkillCategory[] = [
     icon: "wrench"
   },
   {
-    name: "Other",
+    name: "Otros",
     skills: skills.filter(skill => skill.category === 'other'),
     icon: "plus"
   }
