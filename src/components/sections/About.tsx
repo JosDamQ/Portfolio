@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { Download, MapPin, Calendar, Award } from 'lucide-react';
+import { Download, MapPin, Award, Mail } from 'lucide-react';
 import { Button, Card, CardContent } from '@/components/ui';
 import { PersonalInfo } from '@/lib/types';
 import { getTotalExperienceYears } from '@/lib/data/experience';
@@ -93,7 +93,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                 </div>
 
                 <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent-green rounded-full flex items-center justify-center shadow-lg">
-                  <Calendar className="w-6 h-6 text-white" />
+                  <Award className="w-6 h-6 text-white" />
                 </div>
               </div>
             </div>
@@ -213,10 +213,19 @@ export function About({ personalInfo }: AboutSectionProps) {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
-            <h2 className="text-responsive-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Award className="w-6 h-6 text-primary-500" aria-hidden="true" />
+              <span className="text-primary-500 font-medium uppercase tracking-wider text-sm">
+                Conoce al Desarrollador
+              </span>
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Sobre Mí
             </h2>
-            <div className="w-16 sm:w-24 h-1 gradient-primary mx-auto rounded-full" aria-hidden="true"></div>
+            <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Desarrollador Full Stack apasionado por crear soluciones digitales 
+              que marquen la diferencia en la experiencia del usuario.
+            </p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
@@ -257,31 +266,38 @@ export function About({ personalInfo }: AboutSectionProps) {
                   transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   aria-hidden="true"
                 >
-                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                  <Award className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
                 </motion.div>
               </div>
             </motion.div>
 
             {/* Content */}
             <motion.div variants={itemVariants} className="space-y-6 sm:space-y-8 order-1 lg:order-2">
-              {/* Professional Summary */}
+              {/* Mi Historia */}
               <div>
                 <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
-                  {personalInfo.title}
+                  Mi Historia
                 </h3>
-                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-base sm:text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
                   {personalInfo.summary}
+                </p>
+                
+                <p className="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Mi pasión por la tecnología comenzó temprano, y desde entonces he estado 
+                  comprometido con el aprendizaje continuo y la mejora de mis habilidades. 
+                  Disfruto trabajando en equipos colaborativos donde puedo contribuir tanto 
+                  técnicamente como en la toma de decisiones estratégicas.
                 </p>
               </div>
 
-              {/* Key Stats */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4" role="group" aria-label="Professional statistics">
+              {/* Key Stats - Más detalladas */}
+              <div className="grid grid-cols-2 gap-3 sm:gap-4" role="group" aria-label="Estadísticas profesionales">
                 <Card variant="glass" padding="md" hover>
                   <CardContent>
                     <div className="text-center">
                       <div 
                         className="text-2xl sm:text-3xl font-bold gradient-text mb-1 sm:mb-2"
-                        aria-label={`${totalExperience} plus years of experience`}
+                        aria-label={`${totalExperience} años de experiencia`}
                       >
                         {totalExperience}+
                       </div>
@@ -297,7 +313,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                     <div className="text-center">
                       <div 
                         className="text-2xl sm:text-3xl font-bold gradient-text mb-1 sm:mb-2"
-                        aria-label="50 plus projects completed"
+                        aria-label="25 proyectos completados"
                       >
                         25+
                       </div>
@@ -309,53 +325,45 @@ export function About({ personalInfo }: AboutSectionProps) {
                 </Card>
               </div>
 
-              {/* Location */}
-              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
-                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
-                <span className="text-base sm:text-lg" aria-label={`Based in ${personalInfo.location}`}>
-                  {personalInfo.location}
-                </span>
-              </div>
-
-              {/* Experience Highlight */}
+              {/* Lo que me Motiva */}
               <Card variant="elevated" padding="lg">
                 <CardContent>
                   <div className="flex items-start gap-3 sm:gap-4">
                     <div 
                       className="w-10 h-10 sm:w-12 sm:h-12 gradient-primary rounded-full flex items-center justify-center flex-shrink-0"
                       role="img"
-                      aria-label="Professional experience icon"
+                      aria-label="Icono de motivación"
                     >
                       <Award className="w-5 h-5 sm:w-6 sm:h-6 text-white" aria-hidden="true" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                        Experiencia Profesional
+                        Lo que me Motiva
                       </h4>
                       <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
-                        Con más de <strong className="text-primary-600 dark:text-primary-400">
-                          {totalExperience} años de experiencia profesional en desarrollo
-                        </strong>, he contribuido exitosamente en la entrega de aplicaciones web escalables 
-                        y participado en iniciativas técnicas que impulsan el crecimiento del negocio.
+                        Me apasiona <strong className="text-primary-600 dark:text-primary-400">
+                          resolver problemas complejos con soluciones elegantes
+                        </strong>. Cada proyecto es una oportunidad para aprender algo nuevo 
+                        y crear algo que realmente impacte positivamente en la vida de las personas.
                       </p>
-                      <div className="flex flex-wrap gap-1 sm:gap-2" role="list" aria-label="Key expertise areas">
+                      <div className="flex flex-wrap gap-1 sm:gap-2" role="list" aria-label="Valores profesionales">
                         <span 
                           className="px-2 sm:px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-xs sm:text-sm font-medium"
                           role="listitem"
                         >
-                          Programador Full Stack
+                          Código Limpio
                         </span>
                         <span 
                           className="px-2 sm:px-3 py-1 bg-accent-purple/10 text-accent-purple rounded-full text-xs sm:text-sm font-medium"
                           role="listitem"
                         >
-                          Team Leadership
+                          Innovación
                         </span>
                         <span 
                           className="px-2 sm:px-3 py-1 bg-accent-green/10 text-accent-green rounded-full text-xs sm:text-sm font-medium"
                           role="listitem"
                         >
-                          Optimización de rendimiento
+                          Colaboración
                         </span>
                       </div>
                     </div>
@@ -363,7 +371,15 @@ export function About({ personalInfo }: AboutSectionProps) {
                 </CardContent>
               </Card>
 
-              {/* Resume Download */}
+              {/* Ubicación */}
+              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
+                <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 flex-shrink-0" aria-hidden="true" />
+                <span className="text-base sm:text-lg" aria-label={`Ubicado en ${personalInfo.location}`}>
+                  {personalInfo.location}
+                </span>
+              </div>
+
+              {/* Solo CV - Acción principal */}
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -373,9 +389,8 @@ export function About({ personalInfo }: AboutSectionProps) {
                   size="lg"
                   leftIcon={<Download className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />}
                   className="w-full sm:w-auto min-h-[48px]"
-                  aria-label={`Download ${personalInfo.name}'s resume as PDF`}
+                  aria-label={`Descargar CV de ${personalInfo.name} en PDF`}
                   onClick={() => {
-                    // Create a temporary link to download the resume
                     const link = document.createElement('a');
                     link.href = personalInfo.resumeUrl;
                     link.download = `${personalInfo.name.replace(' ', '_')}_Resume.pdf`;
