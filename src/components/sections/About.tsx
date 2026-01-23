@@ -117,7 +117,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                         {totalExperience}+
                       </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">
-                        Years Experience
+                        Años de Experiencia
                       </div>
                     </div>
                   </CardContent>
@@ -130,7 +130,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                         25+
                       </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">
-                        Projects Completed
+                        Proyectos Completados
                       </div>
                     </div>
                   </CardContent>
@@ -150,7 +150,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                     </div>
                     <div>
                       <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                        Professional Experience
+                        Experiencia Profesional
                       </h4>
                       <p className="text-gray-600 dark:text-gray-300 mb-4">
                         Con más de <strong className="text-primary-600 dark:text-primary-400">
@@ -214,7 +214,7 @@ export function About({ personalInfo }: AboutSectionProps) {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-12 sm:mb-16">
             <h2 className="text-responsive-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
-              About Me
+              Sobre Mí
             </h2>
             <div className="w-16 sm:w-24 h-1 gradient-primary mx-auto rounded-full" aria-hidden="true"></div>
           </motion.div>
@@ -286,7 +286,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                         {totalExperience}+
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                        Years Experience
+                        Años de Experiencia
                       </div>
                     </div>
                   </CardContent>
@@ -302,7 +302,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                         25+
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                        Projects Completed
+                        Proyectos Completados
                       </div>
                     </div>
                   </CardContent>
@@ -330,7 +330,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                     </div>
                     <div className="min-w-0 flex-1">
                       <h4 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                        Professional Experience
+                        Experiencia Profesional
                       </h4>
                       <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
                         Con más de <strong className="text-primary-600 dark:text-primary-400">
