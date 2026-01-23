@@ -2,8 +2,8 @@ import { PersonalInfo, ContactInfo } from '../types';
 
 export const personalInfo: PersonalInfo = {
   name: "Josue García",
-  title: "Full Stack Developer",
-  summary: "Desarrollador apasionado con 2+ años de experiencia creando aplicaciones web modernas y escalables. Especializado en React, Node.js y tecnologías cloud, con un enfoque en la experiencia del usuario y las mejores prácticas de desarrollo.",
+  title: "Programador Full Stack",
+  summary: "Desarrollador Full Stack con 3+ años de experiencia especializado en el ecosistema JavaScript/TypeScript. Apasionado por construir arquitecturas escalables y código mantenible que resuelva problemas reales del negocio.",
   avatar: "https://github.com/JosDamQ.png?size=400",
   resumeUrl: "/CV_ES.pdf",
   location: "Guatemala, Guatemala"

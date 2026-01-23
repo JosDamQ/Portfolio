@@ -2,78 +2,61 @@ import { Experience } from '../types';
 
 export const experiences: Experience[] = [
   {
-    id: "fullstack-developer-techcorp",
-    company: "TechCorp Solutions",
-    position: "Full Stack Developer",
-    duration: "Enero 2023 - Presente",
-    startDate: new Date('2023-01-15'),
+    id: "fullstack-developer-nexa",
+    company: "Banco Nexa",
+    position: "Analista Programador",
+    duration: "Octubre 2025 - Presente",
+    startDate: new Date('2025-10-14'),
     endDate: undefined,
-    description: "Desarrollo y mantenimiento de aplicaciones web escalables utilizando React, Node.js y tecnologías cloud. Liderazgo técnico en proyectos de migración y optimización de rendimiento.",
+    description: "Desarrollador Full Stack en el equipo de middleware, especializado en el desarrollo de microservicios desplegados en AWS y la plataforma de banca empresarial. Responsable del desarrollo completo desde aplicaciones frontend hasta la integración con sistemas core bancarios, aplicando las mejores prácticas de seguridad y escalabilidad en el sector financiero.",
     achievements: [
-      "Desarrollé una plataforma de e-commerce que incrementó las ventas en un 40%",
-      "Lideré la migración de una aplicación legacy a arquitectura de microservicios",
-      "Implementé un sistema de CI/CD que redujo el tiempo de deployment en 60%",
-      "Mentoré a 2 desarrolladores junior en mejores prácticas de desarrollo",
-      "Optimicé el rendimiento de la aplicación principal, reduciendo el tiempo de carga en 50%"
+      "Desarrollo de microservicios escalables desplegados en AWS con arquitectura cloud-native",
+      "Implementación de la plataforma de banca empresarial full stack, desde frontend hasta backend",
+      "Integración con sistemas core bancarios garantizando alta disponibilidad y seguridad",
+      "Aplicación de mejores prácticas de seguridad financiera y cumplimiento regulatorio",
+      "Desarrollo de APIs robustas para servicios de middleware bancario",
+      "Optimización de rendimiento y escalabilidad en aplicaciones críticas del negocio",
+      "Colaboración en arquitectura de sistemas distribuidos para operaciones bancarias"
     ],
     technologies: [
-      "React", "Next.js", "TypeScript", "Node.js", "Express.js", 
-      "MongoDB", "PostgreSQL", "AWS", "Docker", "Jest"
+      "Angular", "TypeScript", "Node.js", "Nest Js", 
+      "Flutter", "Dart", "AWS", "Docker",
+      "Microservices", "CI/CD", "PostgreSQL"
     ],
     current: true
   },
   {
-    id: "frontend-developer-innovate",
-    company: "Innovate Digital Agency",
-    position: "Frontend Developer",
-    duration: "Marzo 2022 - Diciembre 2022",
-    startDate: new Date('2022-03-01'),
-    endDate: new Date('2022-12-31'),
-    description: "Desarrollo de interfaces de usuario modernas y responsivas para clientes corporativos. Colaboración estrecha con equipos de diseño UX/UI para implementar experiencias de usuario excepcionales.",
+    id: "junior-developer-qs",
+    company: "QuickShipping",
+    position: "Desarrollador Junior",
+    duration: "Noviembre 2023 - Octubre 2025",
+    startDate: new Date('2023-11-01'),
+    endDate: new Date('2025-10-31'),
+    description: "Primer rol profesional como desarrollador en una empresa de logística y courier. Enfocado en el desarrollo de APIs RESTful para integración con sistemas de pago y gestión de bases de datos transaccionales para operaciones críticas del negocio.",
     achievements: [
-      "Desarrollé 8+ sitios web corporativos con React y Vue.js",
-      "Implementé un sistema de design system reutilizable para la agencia",
-      "Mejoré la accesibilidad web logrando puntuaciones AA en WCAG 2.1",
-      "Reduje el tiempo de desarrollo de proyectos en 30% mediante componentes reutilizables",
-      "Colaboré con equipos multidisciplinarios en metodología Agile/Scrum"
+      "Implementé APIs RESTful para integración con múltiples pasarelas de pago utilizando Node.js y Laravel",
+      "Gestioné y optimicé bases de datos PostgreSQL, asegurando la integridad y consistencia de datos transaccionales",
+      "Desarrollé funcionalidades backend para el sistema de tracking y gestión de envíos",
+      "Participé en la implementación de medidas de seguridad para uso de pasarelas de pago",
+      "Colaboré en el mantenimiento y mejora continua de la plataforma de courier",
+      "Aprendí y apliqué mejores prácticas en desarrollo de sistemas transaccionales críticos"
     ],
     technologies: [
-      "React", "Vue.js", "JavaScript", "TypeScript", "Sass", 
-      "Tailwind CSS", "Figma", "Git", "Webpack"
-    ],
-    current: false
-  },
-  {
-    id: "junior-developer-startup",
-    company: "StartupLab",
-    position: "Junior Web Developer",
-    duration: "Junio 2021 - Febrero 2022",
-    startDate: new Date('2021-06-01'),
-    endDate: new Date('2022-02-28'),
-    description: "Primer rol profesional como desarrollador web en un entorno startup dinámico. Desarrollo de funcionalidades frontend y backend para una plataforma SaaS de gestión empresarial.",
-    achievements: [
-      "Contribuí al desarrollo de una plataforma SaaS desde cero",
-      "Implementé funcionalidades de autenticación y autorización",
-      "Desarrollé dashboards interactivos con visualización de datos",
-      "Participé en el proceso completo de desarrollo desde diseño hasta deployment",
-      "Aprendí y apliqué metodologías ágiles de desarrollo"
-    ],
-    technologies: [
-      "JavaScript", "React", "Node.js", "Express.js", "MongoDB", 
-      "HTML5", "CSS3", "Bootstrap", "Git", "Heroku"
+      "Node.js", "Laravel", "PostgreSQL", "JavaScript", "PHP", "REST APIs", 
+      "Git", "SQL", "Express.js", "Payment Gateways", "Database Optimization"
     ],
     current: false
   },
   {
     id: "intern-webdev-freelance",
-    company: "Freelance Projects",
-    position: "Web Development Intern",
-    duration: "Enero 2021 - Mayo 2021",
-    startDate: new Date('2021-01-01'),
-    endDate: new Date('2021-05-31'),
-    description: "Prácticas profesionales desarrollando sitios web para pequeñas empresas y emprendedores. Enfoque en desarrollo frontend con tecnologías modernas y mejores prácticas.",
+    company: "Transforma Digital",
+    position: "Practicante",
+    duration: "Agosto 2023 - Octubre 2023",
+    startDate: new Date('2023-08-16'),
+    endDate: new Date('2023-10-30'),
+    description: "Prácticas profesionales desarrollando sitios web para pequeñas empresas. Enfoque en desarrollo frontend con tecnologías modernas y mejores prácticas.",
     achievements: [
-      "Completé 5+ proyectos web para pequeñas empresas",
+      "Completé proyectos web para pequeñas empresas",
       "Desarrollé habilidades en comunicación con clientes",
       "Implementé sitios web responsivos y optimizados para SEO",
       "Aprendí fundamentos de UX/UI design",
@@ -81,7 +64,7 @@ export const experiences: Experience[] = [
     ],
     technologies: [
       "HTML5", "CSS3", "JavaScript", "React", "Sass", 
-      "WordPress", "Git", "Photoshop", "Figma"
+      "Git", "Figma", "Java"
     ],
     current: false
   }
@@ -97,7 +80,7 @@ export const getPreviousExperiences = (): Experience[] => {
 };
 
 export const getTotalExperienceYears = (): number => {
-  const startDate = new Date('2021-01-01'); // First professional experience
+  const startDate = new Date('2023-08-16'); // First professional experience
   const currentDate = new Date();
   const diffTime = Math.abs(currentDate.getTime() - startDate.getTime());
   const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
