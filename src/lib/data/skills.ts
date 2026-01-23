@@ -15,6 +15,24 @@ export const skills: Skill[] = [
     icon: "nextjs"
   },
   {
+    name: "Angular",
+    category: "frontend",
+    yearsOfExperience: 1,
+    icon: "angular"
+  },
+  {
+    name: "Flutter",
+    category: "frontend",
+    yearsOfExperience: 1,
+    icon: "flutter"
+  },
+  {
+    name: "Dart",
+    category: "frontend",
+    yearsOfExperience: 1,
+    icon: "dart"
+  },
+  {
     name: "TypeScript",
     category: "frontend",
     yearsOfExperience: 2,
@@ -26,35 +44,11 @@ export const skills: Skill[] = [
     yearsOfExperience: 3,
     icon: "javascript"
   },
-  // {
-  //   name: "Vue.js",
-  //   category: "frontend",
-  //   yearsOfExperience: 1,
-  //   icon: "vue"
-  // },
-  {
-    name: "HTML5",
-    category: "frontend",
-    yearsOfExperience: 3,
-    icon: "html5"
-  },
-  {
-    name: "CSS3",
-    category: "frontend",
-    yearsOfExperience: 3,
-    icon: "css3"
-  },
   {
     name: "Tailwind CSS",
     category: "frontend",
     yearsOfExperience: 2,
     icon: "tailwind"
-  },
-  {
-    name: "Sass/SCSS",
-    category: "frontend",
-    yearsOfExperience: 2.5,
-    icon: "sass"
   },
   // {
   //   name: "React Native",
@@ -163,6 +157,12 @@ export const skills: Skill[] = [
     category: "tools",
     yearsOfExperience: 2,
     icon: "aws"
+  },
+  {
+    name: "Firebase",
+    category: "tools",
+    yearsOfExperience: 1.5,
+    icon: "firebase"
   },
   {
     name: "Vercel",

@@ -45,7 +45,11 @@ import {
   SiSpring,
   SiInsomnia,
   SiAmazon,
-  SiPostman
+  SiPostman,
+  SiAngular,
+  SiFlutter,
+  SiDart,
+  SiFirebase
 } from 'react-icons/si';
 
 import { Card, CardContent, Button } from '@/components/ui';
@@ -67,6 +71,9 @@ const skillIcons: Record<string, React.ComponentType<{ className?: string; style
   'typescript': SiTypescript,
   'javascript': SiJavascript,
   'vue': SiVuedotjs,
+  'angular': SiAngular,
+  'flutter': SiFlutter,
+  'dart': SiDart,
   'html5': SiHtml5,
   'css3': SiCss3,
   'tailwind': SiTailwindcss,
@@ -93,6 +100,7 @@ const skillIcons: Record<string, React.ComponentType<{ className?: string; style
   'figma': SiFigma,
   'jest': SiJest,
   'insomnia': SiInsomnia,
+  'firebase': SiFirebase,
   'fastapi': Server,
   'api': Server,
   'webhooks': Server,
@@ -115,6 +123,9 @@ const skillColors: Record<string, string> = {
   'typescript': '#3178C6',
   'javascript': '#F7DF1E',
   'vue': '#4FC08D',
+  'angular': '#DD0031',
+  'flutter': '#02569B',
+  'dart': '#0175C2',
   'html5': '#E34F26',
   'css3': '#1572B6',
   'tailwind': '#06B6D4',
@@ -140,24 +151,21 @@ const skillColors: Record<string, string> = {
   'figma': '#F24E1E',
   'jest': '#C21325',
   'insomnia': '#4000BF',
+  'firebase': '#FFCA28',
   'vscode': '#007ACC',
   'aws': '#FF9900',
   'postman': '#FF6C37'
 };
 
-// Web development technologies for highlighting
-const webDevelopmentTechs = [
-  'React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS3', 
-  'Tailwind CSS', 'Node.js', 'Express.js', 'MongoDB', 'PostgreSQL'
+// Web development technologies for current stack
+const currentStackTechs = [
+  'Angular', 'Flutter', 'TypeScript', 'JavaScript',
+  'Tailwind CSS', 'Node.js', 'Nest Js', 'MongoDB', 'PostgreSQL'
 ];
 
-interface SkillItemProps {
-  skill: Skill;
-  isHighlighted: boolean;
-  index: number;
-}
 
-function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
+
+function SkillItem({ skill, index }: { skill: Skill; index: number }) {
   const [isHovered, setIsHovered] = useState(false);
   
   // Get icon and color for skill
@@ -177,14 +185,11 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
       <div 
         className={`
           p-4 sm:p-6 rounded-xl border transition-all duration-300 cursor-pointer relative overflow-hidden
-          ${isHighlighted 
-            ? 'border-primary-400 bg-gradient-to-br from-primary-50 to-primary-100/50 dark:from-primary-900/30 dark:to-primary-800/20 dark:border-primary-500' 
-            : 'border-secondary-200 bg-white dark:bg-secondary-800 dark:border-secondary-700'
-          }
+          border-secondary-200 bg-white dark:bg-secondary-800 dark:border-secondary-700
           ${isHovered ? 'shadow-xl transform -translate-y-2 scale-105' : 'shadow-md'}
         `}
         role="article"
-        aria-label={`${skill.name} skill with ${skill.yearsOfExperience} years of experience${isHighlighted ? ' - highlighted for web development' : ''}`}
+        aria-label={`${skill.name} skill with ${skill.yearsOfExperience} years of experience`}
         tabIndex={0}
       >
         <div className="flex flex-col gap-3">
@@ -208,11 +213,7 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
               </div>
               
               <div className="flex-1 min-w-0">
-                <h4 className={`font-semibold text-lg sm:text-xl truncate ${
-                  isHighlighted 
-                    ? 'text-primary-700 dark:text-primary-300' 
-                    : 'text-secondary-900 dark:text-secondary-100'
-                }`}>
+                <h4 className="font-semibold text-lg sm:text-xl truncate text-secondary-900 dark:text-secondary-100">
                   {skill.name}
                 </h4>
                 <p className="text-xs sm:text-sm text-secondary-500 dark:text-secondary-400 mt-1">
@@ -220,22 +221,6 @@ function SkillItem({ skill, isHighlighted, index }: SkillItemProps) {
                 </p>
               </div>
             </div>
-            
-            {isHighlighted && (
-              <motion.div
-                initial={{ scale: 0, rotate: -180 }}
-                animate={{ scale: 1, rotate: 0 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30, delay: index * 0.1 }}
-                className="flex items-center gap-1 flex-shrink-0 ml-2"
-                role="status"
-                aria-label="Highlighted for web development"
-              >
-                <Star className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-500 fill-current" aria-hidden="true" />
-                <span className="text-xs sm:text-sm font-medium text-yellow-600 dark:text-yellow-400 whitespace-nowrap">
-                  Web Dev
-                </span>
-              </motion.div>
-            )}
           </div>
         </div>
       </div>
@@ -294,13 +279,6 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
   const [activeCategory, setActiveCategory] = useState(categories[0]?.name || 'Frontend');
   
   const currentCategorySkills = categories.find(cat => cat.name === activeCategory)?.skills || [];
-  
-  // Get web development skills for highlighting
-  const highlightedSkills = new Set(
-    skills
-      .filter(skill => webDevelopmentTechs.includes(skill.name))
-      .map(skill => skill.name)
-  );
   
   return (
     <section 
@@ -375,7 +353,6 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
                 <SkillItem
                   key={skill.name}
                   skill={skill}
-                  isHighlighted={highlightedSkills.has(skill.name)}
                   index={index}
                 />
               ))}
@@ -383,7 +360,7 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
           </AnimatePresence>
         </motion.div>
 
-        {/* Web Development Highlight Section */}
+        {/* Current Stack Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -397,16 +374,16 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
                 <div 
                   className="p-3 bg-primary-500 rounded-lg"
                   role="img"
-                  aria-label="Web development focus icon"
+                  aria-label="Current technology stack icon"
                 >
                   <Zap className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-semibold text-secondary-900 dark:text-secondary-100">
-                    Enfoque en Desarrollo Web
+                    Stack Actual
                   </h3>
                   <p className="text-secondary-600 dark:text-secondary-400">
-                    Tecnologías principales para desarrollo web moderno
+                    Tecnologías que uso actualmente en mis proyectos
                   </p>
                 </div>
               </div>
@@ -414,10 +391,10 @@ export function Skills({ skills, categories }: SkillsSectionProps) {
               <div 
                 className="flex flex-wrap gap-3"
                 role="list"
-                aria-label="Primary web development technologies"
+                aria-label="Current technology stack"
               >
                 {skills
-                  .filter(skill => webDevelopmentTechs.includes(skill.name))
+                  .filter(skill => currentStackTechs.includes(skill.name))
                   .sort((a, b) => b.yearsOfExperience - a.yearsOfExperience)
                   .map((skill) => {
                     const skillKey = skill.icon || skill.name.toLowerCase().replace(/[^a-z0-9]/g, '');
