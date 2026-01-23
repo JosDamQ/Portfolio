@@ -96,23 +96,16 @@ const Header: React.FC<HeaderProps> = ({
         <div className="container-responsive">
           <div className="flex items-center justify-between h-16 lg:h-20">
             {/* Logo/Brand - Touch-friendly */}
+            {/* Brand - Personal & Eye-catching */}
             <button
-              className="flex-shrink-0 min-h-[48px] min-w-[48px] focus-ring rounded-lg p-2 -m-2"
+              className="flex-shrink-0 min-h-[48px] focus-ring rounded-lg px-3 py-2"
               onClick={() => handleSectionClick('hero')}
-              aria-label={`Go to home section - ${personalInfo.name} Portfolio`}
+              aria-label="Go to home section"
             >
               <div className="flex items-center space-x-2">
-                <div 
-                  className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center"
-                  role="img"
-                  aria-label={`${personalInfo.name} logo`}
-                >
-                  <span className="text-white font-bold text-sm sm:text-base">
-                    {personalInfo.name.charAt(0)}
-                  </span>
-                </div>
-                <span className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white">
-                  {personalInfo.name.split(' ')[0]}
+                <span className="text-2xl">💻</span>
+                <span className="text-lg font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+                  Dev
                 </span>
               </div>
             </button>
@@ -171,15 +164,7 @@ const Header: React.FC<HeaderProps> = ({
           {/* Header */}
           <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center space-x-2">
-              <div 
-                className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center"
-                role="img"
-                aria-label={`${personalInfo.name} logo`}
-              >
-                <span className="text-white font-bold text-sm">
-                  {personalInfo.name.charAt(0)}
-                </span>
-              </div>
+              <span className="text-lg">💻</span>
               <span className="text-lg font-bold text-gray-900 dark:text-white">
                 Navigation
               </span>
@@ -227,7 +212,7 @@ const Header: React.FC<HeaderProps> = ({
           {/* Footer */}
           <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-              {personalInfo.name} • Portfolio
+              Developer Portfolio
             </p>
           </div>
         </div>
