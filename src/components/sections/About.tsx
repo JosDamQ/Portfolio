@@ -127,7 +127,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                   <CardContent>
                     <div className="text-center">
                       <div className="text-3xl font-bold gradient-text mb-2">
-                        50+
+                        25+
                       </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400">
                         Projects Completed
@@ -153,20 +153,20 @@ export function About({ personalInfo }: AboutSectionProps) {
                         Professional Experience
                       </h4>
                       <p className="text-gray-600 dark:text-gray-300 mb-4">
-                        With over <strong className="text-primary-600 dark:text-primary-400">
-                          {totalExperience} years of professional development experience
-                        </strong>, I have successfully delivered scalable web applications 
-                        and led technical initiatives that drive business growth.
+                        Con más de <strong className="text-primary-600 dark:text-primary-400">
+                          {totalExperience} años de experiencia profesional en desarrollo
+                        </strong>, he contribuido exitosamente en la entrega de aplicaciones web escalables 
+                        y participado en iniciativas técnicas que impulsan el crecimiento del negocio.
                       </p>
                       <div className="flex flex-wrap gap-2">
                         <span className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium">
-                          Full Stack Development
+                          Programador Full Stack
                         </span>
                         <span className="px-3 py-1 bg-accent-purple/10 text-accent-purple rounded-full text-sm font-medium">
                           Team Leadership
                         </span>
                         <span className="px-3 py-1 bg-accent-green/10 text-accent-green rounded-full text-sm font-medium">
-                          Performance Optimization
+                          Optimización de rendimiento
                         </span>
                       </div>
                     </div>
@@ -299,7 +299,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                         className="text-2xl sm:text-3xl font-bold gradient-text mb-1 sm:mb-2"
                         aria-label="50 plus projects completed"
                       >
-                        50+
+                        25+
                       </div>
                       <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
                         Projects Completed
@@ -333,17 +333,17 @@ export function About({ personalInfo }: AboutSectionProps) {
                         Professional Experience
                       </h4>
                       <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-3 sm:mb-4">
-                        With over <strong className="text-primary-600 dark:text-primary-400">
-                          {totalExperience} years of professional development experience
-                        </strong>, I have successfully delivered scalable web applications 
-                        and led technical initiatives that drive business growth.
+                        Con más de <strong className="text-primary-600 dark:text-primary-400">
+                          {totalExperience} años de experiencia profesional en desarrollo
+                        </strong>, he contribuido exitosamente en la entrega de aplicaciones web escalables 
+                        y participado en iniciativas técnicas que impulsan el crecimiento del negocio.
                       </p>
                       <div className="flex flex-wrap gap-1 sm:gap-2" role="list" aria-label="Key expertise areas">
                         <span 
                           className="px-2 sm:px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-xs sm:text-sm font-medium"
                           role="listitem"
                         >
-                          Full Stack Development
+                          Programador Full Stack
                         </span>
                         <span 
                           className="px-2 sm:px-3 py-1 bg-accent-purple/10 text-accent-purple rounded-full text-xs sm:text-sm font-medium"
@@ -355,7 +355,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                           className="px-2 sm:px-3 py-1 bg-accent-green/10 text-accent-green rounded-full text-xs sm:text-sm font-medium"
                           role="listitem"
                         >
-                          Performance Optimization
+                          Optimización de rendimiento
                         </span>
                       </div>
                     </div>
@@ -385,7 +385,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                     document.body.removeChild(link);
                   }}
                 >
-                  Download Resume
+                  Descargar CV
                 </Button>
               </motion.div>
             </motion.div>

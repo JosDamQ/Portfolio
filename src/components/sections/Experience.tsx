@@ -257,7 +257,7 @@ interface ExperienceStatsProps {
 
 function ExperienceStats({ experiences }: ExperienceStatsProps) {
   const totalExperience = () => {
-    const startDate = new Date('2021-01-01'); // First professional experience
+    const startDate = new Date('2023-08-16'); // First professional experience
     const currentDate = new Date();
     const diffTime = Math.abs(currentDate.getTime() - startDate.getTime());
     const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
@@ -358,7 +358,7 @@ export function Experience({ experiences }: ExperienceSectionProps) {
             Experiencia Laboral
           </h2>
           <p className="text-lg text-secondary-600 dark:text-secondary-400 max-w-2xl mx-auto">
-            Más de 2 años de experiencia profesional en desarrollo web, 
+            Más de 3 años de experiencia profesional en desarrollo web/app, 
             desde prácticas hasta roles de liderazgo técnico.
           </p>
         </motion.div>
