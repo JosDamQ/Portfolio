@@ -6,6 +6,7 @@ import { Hero, About, Skills, Experience, Projects, Contact } from '@/components
 import { ProjectModal } from '@/components/ui';
 import { personalInfo, contactInfo, skills, skillCategories, experiences, projects } from '@/lib/data';
 import { Project, ContactFormData } from '@/lib/types';
+import { getHeaderOffset, getScrollTargetTop } from '@/lib/utils/scroll';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('hero');
@@ -25,8 +26,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'contact'];
-      const headerHeight = window.innerWidth >= 1024 ? 80 : 64;
-      const scrollPosition = window.scrollY + headerHeight + 20; // Responsive offset for header
+      const scrollPosition = window.scrollY + getHeaderOffset() + 20; // Responsive offset for header
 
       for (const sectionId of sections) {
         const element = document.getElementById(sectionId);
@@ -55,11 +55,8 @@ export default function Home() {
     setActiveSection(sectionId);
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = window.innerWidth >= 1024 ? 80 : 64; // Responsive header height
-      const elementPosition = element.offsetTop - headerHeight;
-      
       window.scrollTo({
-        top: elementPosition,
+        top: getScrollTargetTop(element),
         behavior: 'smooth'
       });
     }

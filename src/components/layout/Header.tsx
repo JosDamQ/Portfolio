@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { HeaderProps } from '@/lib/types';
 import Navigation from './Navigation';
+import { getScrollTargetTop } from '@/lib/utils/scroll';
 
 const Header: React.FC<HeaderProps> = ({
   personalInfo,
@@ -16,11 +17,11 @@ const Header: React.FC<HeaderProps> = ({
   // Navigation sections
   const sections = [
     { id: 'hero', label: 'Home', href: '#hero' },
-    { id: 'about', label: 'About', href: '#about' },
+    { id: 'about', label: 'Sobre mi', href: '#about' },
     { id: 'skills', label: 'Skills', href: '#skills' },
-    { id: 'experience', label: 'Experience', href: '#experience' },
-    { id: 'projects', label: 'Projects', href: '#projects' },
-    { id: 'contact', label: 'Contact', href: '#contact' },
+    { id: 'experience', label: 'Experiencia', href: '#experience' },
+    { id: 'projects', label: 'Proyectos', href: '#projects' },
+    { id: 'contact', label: 'Contacto', href: '#contact' },
   ];
 
   // Handle scroll detection for header styling
@@ -38,11 +39,8 @@ const Header: React.FC<HeaderProps> = ({
   const handleSectionClick = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = window.innerWidth >= 1024 ? 80 : 64; // Responsive header height
-      const elementPosition = element.offsetTop - headerHeight;
-      
       window.scrollTo({
-        top: elementPosition,
+        top: getScrollTargetTop(element),
         behavior: 'smooth',
       });
       

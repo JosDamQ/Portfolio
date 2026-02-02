@@ -2,6 +2,7 @@
 
 import { Github, Linkedin, Mail, ExternalLink, ArrowUp } from 'lucide-react';
 import { FooterProps } from '@/lib/types';
+import { getScrollTargetTop } from '@/lib/utils/scroll';
 
 const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
   // Navigation sections for quick links
@@ -59,11 +60,8 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
     const sectionId = href.replace('#', '');
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Account for fixed header
-      const elementPosition = element.offsetTop - headerHeight;
-      
       window.scrollTo({
-        top: elementPosition,
+        top: getScrollTargetTop(element),
         behavior: 'smooth',
       });
     }
