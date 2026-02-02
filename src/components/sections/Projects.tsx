@@ -40,7 +40,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
           ) : (
-            <div className="w-full h-full bg-gradient-to-br from-primary-500 to-purple-600 flex items-center justify-center">
+            <div className="w-full h-full bg-gradient-to-br from-primary-500 to-accent-600 flex items-center justify-center">
               <span className="text-white text-xl sm:text-2xl font-bold">
                 {project.title.charAt(0)}
               </span>

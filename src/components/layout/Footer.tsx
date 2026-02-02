@@ -89,7 +89,7 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div 
-                className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center"
+                className="w-8 h-8 bg-gradient-to-r from-primary-600 to-accent-600 rounded-lg flex items-center justify-center"
                 role="img"
                 aria-label={`${personalInfo.name} logo`}
               >

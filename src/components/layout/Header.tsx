@@ -104,7 +104,7 @@ const Header: React.FC<HeaderProps> = ({
             >
               <div className="flex items-center space-x-2">
                 <span className="text-2xl">💻</span>
-                <span className="text-lg font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+                <span className="text-lg font-bold bg-gradient-to-r from-primary-600 to-accent-600 bg-clip-text text-transparent">
                   Dev
                 </span>
               </div>
@@ -190,7 +190,7 @@ const Header: React.FC<HeaderProps> = ({
                 onClick={() => handleSectionClick(section.id)}
                 className={`w-full text-left min-h-[48px] px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 focus-ring ${
                   activeSection === section.id
-                    ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300'
+                    ? 'bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300'
                     : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
                 }`}
                 style={{

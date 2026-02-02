@@ -210,28 +210,28 @@ export function Contact({ contactInfo, onFormSubmit }: ContactSectionProps) {
       label: 'Email',
       value: contactInfo.email,
       href: `mailto:${contactInfo.email}`,
-      color: 'text-blue-600 dark:text-blue-400'
+      color: 'text-primary-600 dark:text-primary-400'
     },
     {
       icon: Github,
       label: 'GitHub',
       value: 'Ver Perfil',
       href: contactInfo.github,
-      color: 'text-gray-700 dark:text-gray-300'
+      color: 'text-secondary-700 dark:text-secondary-300'
     },
     {
       icon: Linkedin,
       label: 'LinkedIn',
       value: 'Conectar',
       href: contactInfo.linkedin,
-      color: 'text-blue-700 dark:text-blue-400'
+      color: 'text-accent-600 dark:text-accent-500'
     },
     ...(contactInfo.twitter ? [{
       icon: Twitter,
       label: 'Twitter',
       value: 'Seguir',
       href: contactInfo.twitter,
-      color: 'text-sky-600 dark:text-sky-400'
+      color: 'text-secondary-600 dark:text-secondary-400'
     }] : [])
   ];
 
@@ -478,7 +478,7 @@ export function Contact({ contactInfo, onFormSubmit }: ContactSectionProps) {
             {/* Availability Status */}
             <Card variant="glass" padding="lg">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                <div className="w-3 h-3 bg-primary-500 rounded-full animate-pulse"></div>
                 <h3 className="text-xl font-semibold text-secondary-900 dark:text-secondary-100">
                   Disponible para Trabajar
                 </h3>

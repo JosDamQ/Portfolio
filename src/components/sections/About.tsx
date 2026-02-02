@@ -162,7 +162,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                         <span className="px-3 py-1 bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium">
                           Programador Full Stack
                         </span>
-                        <span className="px-3 py-1 bg-accent-purple/10 text-accent-purple rounded-full text-sm font-medium">
+                        <span className="px-3 py-1 bg-accent-500/10 text-accent-500 rounded-full text-sm font-medium">
                           Team Leadership
                         </span>
                         <span className="px-3 py-1 bg-accent-green/10 text-accent-green rounded-full text-sm font-medium">
@@ -354,7 +354,7 @@ export function About({ personalInfo }: AboutSectionProps) {
                           Código Limpio
                         </span>
                         <span 
-                          className="px-2 sm:px-3 py-1 bg-accent-purple/10 text-accent-purple rounded-full text-xs sm:text-sm font-medium"
+                          className="px-2 sm:px-3 py-1 bg-accent-500/10 text-accent-500 rounded-full text-xs sm:text-sm font-medium"
                           role="listitem"
                         >
                           Innovación

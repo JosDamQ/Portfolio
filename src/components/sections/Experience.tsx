@@ -117,7 +117,7 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
                     <motion.span
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
-                      className="px-2 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full"
+                      className="px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs font-medium rounded-full"
                       role="status"
                       aria-label="Current position"
                     >
@@ -184,7 +184,7 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
                   {experience.achievements.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2 mb-3">
-                        <Award className="w-5 h-5 text-yellow-500" aria-hidden="true" />
+                        <Award className="w-5 h-5 text-accent-500" aria-hidden="true" />
                         <h4 className="font-semibold text-secondary-900 dark:text-secondary-100">
                           Logros Principales
                         </h4>
@@ -214,7 +214,7 @@ function ExperienceCard({ experience, index, isLast }: ExperienceCardProps) {
                   {experience.technologies.length > 0 && (
                     <div>
                       <div className="flex items-center gap-2 mb-3">
-                        <Code2 className="w-5 h-5 text-blue-500" aria-hidden="true" />
+                        <Code2 className="w-5 h-5 text-primary-500" aria-hidden="true" />
                         <h4 className="font-semibold text-secondary-900 dark:text-secondary-100">
                           Tecnologías Utilizadas
                         </h4>
@@ -273,25 +273,25 @@ function ExperienceStats({ experiences }: ExperienceStatsProps) {
       icon: Clock,
       label: 'Años de Experiencia',
       value: `${totalExperience()}+`,
-      color: 'text-blue-500'
+      color: 'text-primary-500'
     },
     {
       icon: Building,
       label: 'Empresas',
       value: totalCompanies.toString(),
-      color: 'text-green-500'
+      color: 'text-accent-600'
     },
     {
       icon: Code2,
       label: 'Tecnologías',
       value: allTechnologies.length.toString(),
-      color: 'text-purple-500'
+      color: 'text-secondary-600'
     },
     {
       icon: Award,
       label: 'Posición Actual',
       value: currentRole ? 'Full Stack Dev' : 'Disponible',
-      color: 'text-yellow-500'
+      color: 'text-accent-500'
     }
   ];
 

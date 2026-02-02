@@ -1,40 +1,40 @@
 export const theme = {
   colors: {
     primary: {
-      50: '#f0f9ff',
-      100: '#e0f2fe',
-      200: '#bae6fd',
-      300: '#7dd3fc',
-      400: '#38bdf8',
-      500: '#3b82f6',
-      600: '#2563eb',
-      700: '#1d4ed8',
-      800: '#1e40af',
-      900: '#1e3a8a'
+      50: '#f2f6f3',
+      100: '#e1ebe5',
+      200: '#c7d7ce',
+      300: '#a4bfae',
+      400: '#7a9e89',
+      500: '#5b806f',
+      600: '#3f6254',
+      700: '#304d42',
+      800: '#253b33',
+      900: '#1b2a24'
     },
     secondary: {
-      50: '#f8fafc',
-      100: '#f1f5f9',
-      200: '#e2e8f0',
-      300: '#cbd5e1',
-      400: '#94a3b8',
-      500: '#64748b',
-      600: '#475569',
-      700: '#334155',
-      800: '#1e293b',
-      900: '#0f172a'
+      50: '#faf8f5',
+      100: '#f0ece6',
+      200: '#ddd5cb',
+      300: '#c7bcaf',
+      400: '#ac9c8c',
+      500: '#8f7b6b',
+      600: '#725f52',
+      700: '#5c4d43',
+      800: '#453a33',
+      900: '#2d2621'
     },
     accent: {
-      purple: '#8b5cf6',
-      purpleDark: '#7c3aed',
-      pink: '#ec4899',
-      green: '#10b981'
+      purple: '#c2a36b',
+      purpleDark: '#a88a55',
+      pink: '#8c5b4f',
+      green: '#2f5d50'
     }
   },
   gradients: {
-    primary: 'linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)',
-    secondary: 'linear-gradient(135deg, #374151 0%, #1f2937 100%)',
-    accent: 'linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%)'
+    primary: 'linear-gradient(135deg, #5b806f 0%, #c2a36b 100%)',
+    secondary: 'linear-gradient(135deg, #2d2621 0%, #453a33 100%)',
+    accent: 'linear-gradient(135deg, #a88a55 0%, #8c5b4f 100%)'
   },
   animations: {
     fadeIn: 'fadeIn 0.6s ease-out',
@@ -71,8 +71,8 @@ export const theme = {
     md: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
     lg: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
     xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1)',
-    glow: '0 0 20px rgba(59, 130, 246, 0.4)',
-    glowLarge: '0 0 30px rgba(59, 130, 246, 0.6)'
+    glow: '0 0 20px rgba(63, 98, 84, 0.4)',
+    glowLarge: '0 0 30px rgba(63, 98, 84, 0.6)'
   }
 } as const;
 
