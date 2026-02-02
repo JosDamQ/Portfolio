@@ -185,53 +185,129 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Visual Element */}
+          {/* Right Side - Tetris Game */}
           <motion.div
             className="relative flex items-center justify-center"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            {/* Code Window Mockup */}
-            <div className="relative w-full max-w-md">
-              {/* Window Frame */}
-              <div className="bg-gray-900/90 rounded-lg shadow-2xl border border-gray-700/50 backdrop-blur-sm">
-                {/* Window Header */}
-                <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-700/50">
-                  <div className="flex gap-2">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <div className="text-gray-400 text-sm ml-4">portfolio.tsx</div>
-                </div>
-                
-                {/* Code Content */}
-                <div className="p-4 font-mono text-sm">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 1.0 }}
-                  >
-                    <div className="text-purple-400">const</div>
-                    <div className="text-blue-400 ml-2">developer</div>
-                    <div className="text-white ml-2">= {`{`}</div>
-                    <div className="ml-4">
-                      <div className="text-green-400">name: <span className="text-yellow-300">"{personalInfo.name}"</span>,</div>
-                      <div className="text-green-400">skills: <span className="text-yellow-300">["React", "Node.js", "TypeScript"]</span>,</div>
-                      <div className="text-green-400">passion: <span className="text-yellow-300">"Crear experiencias increíbles"</span>,</div>
-                      <div className="text-green-400">status: <span className="text-yellow-300">"Disponible"</span></div>
+            {/* Tetris Game Container */}
+            <div className="relative w-full max-w-md flex items-center justify-center">
+              {/* Tetris Board */}
+              <div 
+                className="relative bg-gray-900 border-4 border-gray-700 rounded-lg overflow-hidden"
+                style={{ 
+                  width: '240px', 
+                  height: '320px',
+                  boxShadow: '0 0 30px rgba(59, 130, 246, 0.3)'
+                }}
+              >
+                {/* Grid Background */}
+                <div className="absolute inset-0 opacity-20">
+                  {[...Array(16)].map((_, row) => (
+                    <div key={row} className="flex">
+                      {[...Array(10)].map((_, col) => (
+                        <div
+                          key={col}
+                          className="border border-gray-600"
+                          style={{ width: '24px', height: '20px' }}
+                        />
+                      ))}
                     </div>
-                    <div className="text-white">{`}`}</div>
-                  </motion.div>
+                  ))}
+                </div>
+
+                {/* Falling Tetris Pieces */}
+                <TetrisPieces />
+
+                {/* Bottom Completed Lines */}
+                <div className="absolute bottom-0 left-0 right-0">
+                  {/* Line 1 - Complete */}
+                  <div className="flex">
+                    {[
+                      '#DC2626', '#2563EB', '#16A34A', '#EAB308', '#8B5CF6',
+                      '#EC4899', '#F97316', '#06B6D4', '#84CC16', '#F59E0B'
+                    ].map((color, i) => (
+                      <motion.div
+                        key={`line1-${i}`}
+                        className="border border-gray-800"
+                        style={{
+                          width: '24px',
+                          height: '20px',
+                          backgroundColor: color,
+                          boxShadow: 'inset 2px 2px 4px rgba(255,255,255,0.3)'
+                        }}
+                        animate={{ opacity: [1, 0.3, 1] }}
+                        transition={{ 
+                          duration: 0.5, 
+                          repeat: Infinity, 
+                          repeatType: "reverse",
+                          delay: i * 0.1 
+                        }}
+                      />
+                    ))}
+                  </div>
+                  
+                  {/* Line 2 - Partial */}
+                  <div className="flex">
+                    {[
+                      '#DC2626', '#2563EB', null, '#EAB308', '#8B5CF6',
+                      null, '#F97316', '#06B6D4', '#84CC16', null
+                    ].map((color, i) => (
+                      <div
+                        key={`line2-${i}`}
+                        className="border border-gray-800"
+                        style={{
+                          width: '24px',
+                          height: '20px',
+                          backgroundColor: color || 'transparent',
+                          boxShadow: color ? 'inset 2px 2px 4px rgba(255,255,255,0.3)' : 'none'
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Line 3 - Partial */}
+                  <div className="flex">
+                    {[
+                      '#DC2626', null, '#16A34A', '#EAB308', null,
+                      '#EC4899', null, '#06B6D4', null, '#F59E0B'
+                    ].map((color, i) => (
+                      <div
+                        key={`line3-${i}`}
+                        className="border border-gray-800"
+                        style={{
+                          width: '24px',
+                          height: '20px',
+                          backgroundColor: color || 'transparent',
+                          boxShadow: color ? 'inset 2px 2px 4px rgba(255,255,255,0.3)' : 'none'
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                {/* Score Display */}
+                <div className="absolute top-2 left-2 text-white font-mono text-sm">
+                  <div className="bg-black/50 px-2 py-1 rounded">
+                    SCORE: 12,450
+                  </div>
+                </div>
+
+                {/* Level Display */}
+                <div className="absolute top-2 right-2 text-white font-mono text-sm">
+                  <div className="bg-black/50 px-2 py-1 rounded">
+                    LEVEL: 5
+                  </div>
                 </div>
               </div>
 
-              {/* Floating Elements */}
+              {/* Floating Gaming Elements */}
               <motion.div
-                className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-primary-500 to-purple-600 rounded-full flex items-center justify-center shadow-lg"
+                className="absolute -top-6 -right-6 w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-xl"
                 animate={{ 
-                  y: [0, -10, 0],
+                  y: [0, -15, 0],
                   rotate: [0, 5, -5, 0]
                 }}
                 transition={{ 
@@ -240,23 +316,106 @@ export function Hero({ personalInfo, contactInfo, onScrollToSection }: HeroProps
                   ease: "easeInOut" 
                 }}
               >
-                <span className="text-white font-bold text-xl">⚡</span>
+                <span className="text-white font-bold text-2xl">🎮</span>
               </motion.div>
 
               <motion.div
-                className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-accent-green to-primary-400 rounded-full flex items-center justify-center shadow-lg"
+                className="absolute -bottom-6 -left-6 w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-xl"
                 animate={{ 
-                  y: [0, 10, 0],
-                  rotate: [0, -5, 5, 0]
+                  y: [0, 12, 0],
+                  rotate: [0, -8, 8, 0]
                 }}
                 transition={{ 
-                  duration: 3, 
+                  duration: 3.5, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              >
+                <span className="text-white font-bold text-xl">🚀</span>
+              </motion.div>
+
+              {/* Pixel Art Style Element */}
+              <motion.div
+                className="absolute -top-4 -left-8 w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center shadow-lg"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  rotate: [0, 360]
+                }}
+                transition={{ 
+                  duration: 6, 
+                  repeat: Infinity, 
+                  ease: "linear"
+                }}
+              >
+                <span className="text-white font-bold">⭐</span>
+              </motion.div>
+
+              {/* Coffee Cup (Developer Essential) */}
+              <motion.div
+                className="absolute -bottom-2 -right-8 w-14 h-14 bg-gradient-to-r from-amber-600 to-orange-600 rounded-full flex items-center justify-center shadow-lg"
+                animate={{ 
+                  y: [0, -8, 0],
+                  x: [0, 3, 0]
+                }}
+                transition={{ 
+                  duration: 2.5, 
                   repeat: Infinity, 
                   ease: "easeInOut",
                   delay: 1
                 }}
               >
-                <span className="text-white font-bold">🚀</span>
+                <span className="text-white text-xl">☕</span>
+              </motion.div>
+
+              {/* Floating Code Symbols */}
+              <motion.div
+                className="absolute top-1/4 -left-12 text-2xl"
+                animate={{ 
+                  y: [0, -20, 0],
+                  opacity: [0.6, 1, 0.6]
+                }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 0.8
+                }}
+              >
+                <span className="text-primary-400">{'{ }'}</span>
+              </motion.div>
+
+              <motion.div
+                className="absolute top-3/4 -right-10 text-xl"
+                animate={{ 
+                  y: [0, -15, 0],
+                  opacity: [0.5, 0.9, 0.5]
+                }}
+                transition={{ 
+                  duration: 2.8, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+              >
+                <span className="text-accent-purple">{'</>'}</span>
+              </motion.div>
+
+              {/* Lightning Bolt for Energy */}
+              <motion.div
+                className="absolute top-1/2 -right-6 w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center shadow-lg"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 15, -15, 0]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut",
+                  delay: 2
+                }}
+              >
+                <span className="text-white font-bold">⚡</span>
               </motion.div>
             </div>
           </motion.div>
@@ -341,6 +500,125 @@ function ParticleField() {
           }}
         />
       ))}
+    </>
+  );
+}
+
+// Tetris Pieces Component
+function TetrisPieces() {
+  const tetrisPieces = [
+    // I-piece (cyan)
+    {
+      id: 'i-piece',
+      color: '#06B6D4',
+      blocks: [
+        { x: 3, y: 0 }, { x: 4, y: 0 }, { x: 5, y: 0 }, { x: 6, y: 0 }
+      ],
+      startDelay: 0
+    },
+    // T-piece (purple)
+    {
+      id: 't-piece',
+      color: '#8B5CF6',
+      blocks: [
+        { x: 4, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 3 }, { x: 5, y: 3 }
+      ],
+      startDelay: 2
+    },
+    // L-piece (orange)
+    {
+      id: 'l-piece',
+      color: '#F97316',
+      blocks: [
+        { x: 6, y: 1 }, { x: 6, y: 2 }, { x: 6, y: 3 }, { x: 7, y: 3 }
+      ],
+      startDelay: 4
+    },
+    // O-piece (yellow)
+    {
+      id: 'o-piece',
+      color: '#EAB308',
+      blocks: [
+        { x: 1, y: 1 }, { x: 2, y: 1 }, { x: 1, y: 2 }, { x: 2, y: 2 }
+      ],
+      startDelay: 6
+    },
+    // S-piece (green)
+    {
+      id: 's-piece',
+      color: '#16A34A',
+      blocks: [
+        { x: 7, y: 5 }, { x: 8, y: 5 }, { x: 6, y: 6 }, { x: 7, y: 6 }
+      ],
+      startDelay: 8
+    },
+    // Z-piece (red)
+    {
+      id: 'z-piece',
+      color: '#DC2626',
+      blocks: [
+        { x: 2, y: 4 }, { x: 3, y: 4 }, { x: 3, y: 5 }, { x: 4, y: 5 }
+      ],
+      startDelay: 10
+    }
+  ];
+
+  return (
+    <>
+      {tetrisPieces.map((piece) => (
+        <motion.div key={piece.id} className="absolute">
+          {piece.blocks.map((block, blockIndex) => (
+            <motion.div
+              key={`${piece.id}-${blockIndex}`}
+              className="absolute border border-gray-800"
+              style={{
+                width: '24px',
+                height: '20px',
+                backgroundColor: piece.color,
+                boxShadow: 'inset 2px 2px 4px rgba(255,255,255,0.3), 0 2px 4px rgba(0,0,0,0.3)',
+                left: `${block.x * 24}px`,
+              }}
+              initial={{ 
+                y: -100
+              }}
+              animate={{ 
+                y: `${block.y * 20 + 60}px`
+              }}
+              transition={{
+                duration: 3,
+                delay: piece.startDelay,
+                repeat: Infinity,
+                repeatDelay: 12,
+                ease: "easeIn"
+              }}
+            />
+          ))}
+        </motion.div>
+      ))}
+      
+      {/* Next Piece Preview */}
+      <div className="absolute -right-16 top-4 bg-gray-800 border-2 border-gray-600 rounded p-2">
+        <div className="text-white text-xs font-mono mb-1">NEXT</div>
+        <div className="relative" style={{ width: '48px', height: '40px' }}>
+          {/* Preview J-piece */}
+          {[
+            { x: 0, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }, { x: 2, y: 1 }
+          ].map((block, i) => (
+            <div
+              key={`preview-${i}`}
+              className="absolute border border-gray-700"
+              style={{
+                width: '12px',
+                height: '10px',
+                backgroundColor: '#2563EB',
+                left: `${block.x * 12}px`,
+                top: `${block.y * 10}px`,
+                boxShadow: 'inset 1px 1px 2px rgba(255,255,255,0.3)'
+              }}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 }
