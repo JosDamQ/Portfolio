@@ -12,6 +12,13 @@ export interface ProjectModalProps {
   onClose: () => void;
 }
 
+const categoryLabels: Record<string, string> = {
+  fullstack: 'Full Stack',
+  web: 'Web',
+  mobile: 'Móvil',
+  tool: 'Herramienta',
+};
+
 export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -29,11 +36,11 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'ArrowLeft') {
-        setCurrentImageIndex((prev) => 
-          prev > 0 ? prev - 1 : (project.images.length - 1)
+        setCurrentImageIndex((prev) =>
+          prev > 0 ? prev - 1 : project.images.length - 1
         );
       } else if (event.key === 'ArrowRight') {
-        setCurrentImageIndex((prev) => 
+        setCurrentImageIndex((prev) =>
           prev < project.images.length - 1 ? prev + 1 : 0
         );
       }
@@ -46,14 +53,14 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   if (!project) return null;
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => 
+    setCurrentImageIndex((prev) =>
       prev < project.images.length - 1 ? prev + 1 : 0
     );
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev > 0 ? prev - 1 : (project.images.length - 1)
+    setCurrentImageIndex((prev) =>
+      prev > 0 ? prev - 1 : project.images.length - 1
     );
   };
 
@@ -65,23 +72,23 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
       showCloseButton={false}
     >
       <div className="relative">
-        {/* Custom Close Button */}
+        {/* Botón cerrar */}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 z-10 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors focus-ring"
-          aria-label={`Close ${project.title} project details`}
+          aria-label={`Cerrar detalles del proyecto ${project.title}`}
         >
           <X className="w-5 h-5" aria-hidden="true" />
         </button>
 
-        {/* Image Gallery */}
+        {/* Galería de imágenes */}
         {project.images.length > 0 && (
           <div className="relative h-64 md:h-80 overflow-hidden rounded-t-xl">
             <AnimatePresence mode="wait">
               <motion.img
                 key={currentImageIndex}
                 src={project.images[currentImageIndex]}
-                alt={`${project.title} - Screenshot ${currentImageIndex + 1} of ${project.images.length}`}
+                alt={`${project.title} - Captura ${currentImageIndex + 1} de ${project.images.length}`}
                 className="w-full h-full object-cover"
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -90,29 +97,29 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
               />
             </AnimatePresence>
 
-            {/* Image Navigation */}
+            {/* Navegación de imágenes */}
             {project.images.length > 1 && (
               <>
                 <button
                   onClick={prevImage}
                   className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors focus-ring"
-                  aria-label={`Previous image (${currentImageIndex} of ${project.images.length})`}
+                  aria-label={`Imagen anterior (${currentImageIndex} de ${project.images.length})`}
                 >
                   <ChevronLeft className="w-5 h-5" aria-hidden="true" />
                 </button>
                 <button
                   onClick={nextImage}
                   className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full transition-colors focus-ring"
-                  aria-label={`Next image (${currentImageIndex + 2} of ${project.images.length})`}
+                  aria-label={`Siguiente imagen (${currentImageIndex + 2} de ${project.images.length})`}
                 >
                   <ChevronRight className="w-5 h-5" aria-hidden="true" />
                 </button>
 
-                {/* Image Indicators */}
-                <div 
+                {/* Indicadores de imagen */}
+                <div
                   className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2"
                   role="tablist"
-                  aria-label="Project images"
+                  aria-label="Imágenes del proyecto"
                 >
                   {project.images.map((_, index) => (
                     <button
@@ -125,57 +132,57 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                       }`}
                       role="tab"
                       aria-selected={index === currentImageIndex}
-                      aria-label={`View image ${index + 1} of ${project.images.length}`}
+                      aria-label={`Ver imagen ${index + 1} de ${project.images.length}`}
                     />
                   ))}
                 </div>
               </>
             )}
 
-            {/* Featured Badge */}
+            {/* Badge destacado */}
             {project.featured && (
               <div className="absolute top-4 left-4">
-                <span 
+                <span
                   className="px-3 py-1 bg-accent-500 text-white text-sm font-medium rounded-full"
                   role="status"
-                  aria-label="This is a featured project"
+                  aria-label="Este es un proyecto destacado"
                 >
-                  Featured Project
+                  Proyecto Destacado
                 </span>
               </div>
             )}
           </div>
         )}
 
-        {/* Content */}
+        {/* Contenido */}
         <div className="p-6 md:p-8">
-          {/* Header */}
+          {/* Encabezado */}
           <div className="mb-6">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-secondary-900 dark:text-secondary-100 mb-2">
                   {project.title}
                 </h2>
-                <span 
+                <span
                   className="inline-block px-3 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium rounded-full capitalize"
                   role="status"
-                  aria-label={`Project category: ${project.category}`}
+                  aria-label={`Categoría del proyecto: ${categoryLabels[project.category] ?? project.category}`}
                 >
-                  {project.category}
+                  {categoryLabels[project.category] ?? project.category}
                 </span>
               </div>
-              
-              {/* Action Buttons */}
-              <div className="flex gap-2" role="group" aria-label="Project actions">
+
+              {/* Botones de acción */}
+              <div className="flex gap-2" role="group" aria-label="Acciones del proyecto">
                 {project.demoUrl && (
                   <Button
                     variant="primary"
                     size="sm"
                     leftIcon={<ExternalLink className="w-4 h-4" aria-hidden="true" />}
                     onClick={() => window.open(project.demoUrl, '_blank')}
-                    aria-label={`View live demo of ${project.title} (opens in new tab)`}
+                    aria-label={`Ver demo en vivo de ${project.title} (abre en nueva pestaña)`}
                   >
-                    Live Demo
+                    Demo en Vivo
                   </Button>
                 )}
                 {project.githubUrl && (
@@ -184,9 +191,9 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     size="sm"
                     leftIcon={<Github className="w-4 h-4" aria-hidden="true" />}
                     onClick={() => window.open(project.githubUrl, '_blank')}
-                    aria-label={`View source code for ${project.title} on GitHub (opens in new tab)`}
+                    aria-label={`Ver código fuente de ${project.title} en GitHub (abre en nueva pestaña)`}
                   >
-                    View Code
+                    Ver Código
                   </Button>
                 )}
               </div>
@@ -197,12 +204,12 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             </p>
           </div>
 
-          {/* Technologies */}
+          {/* Tecnologías */}
           <div className="mb-6">
             <h3 className="text-lg font-semibold text-secondary-900 dark:text-secondary-100 mb-3">
-              Technologies Used
+              Tecnologías Utilizadas
             </h3>
-            <div className="flex flex-wrap gap-2" role="list" aria-label="Technologies used in this project">
+            <div className="flex flex-wrap gap-2" role="list" aria-label="Tecnologías utilizadas en este proyecto">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
@@ -215,13 +222,13 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             </div>
           </div>
 
-          {/* Features */}
+          {/* Características */}
           {project.features.length > 0 && (
             <div className="mb-6">
               <h3 className="text-lg font-semibold text-secondary-900 dark:text-secondary-100 mb-3">
-                Key Features
+                Características Principales
               </h3>
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2" role="list" aria-label="Key features of this project">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-2" role="list" aria-label="Características principales del proyecto">
                 {project.features.map((feature, index) => (
                   <motion.li
                     key={index}
@@ -231,8 +238,8 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     className="flex items-start gap-2 text-secondary-600 dark:text-secondary-400"
                     role="listitem"
                   >
-                    <span 
-                      className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 flex-shrink-0" 
+                    <span
+                      className="w-1.5 h-1.5 bg-primary-500 rounded-full mt-2 flex-shrink-0"
                       aria-hidden="true"
                     />
                     {feature}
@@ -242,10 +249,10 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
             </div>
           )}
 
-          {/* Links Section */}
+          {/* Links */}
           {(project.demoUrl || project.githubUrl) && (
             <div className="pt-6 border-t border-secondary-200 dark:border-secondary-700">
-              <div className="flex flex-col sm:flex-row gap-3" role="group" aria-label="Project links">
+              <div className="flex flex-col sm:flex-row gap-3" role="group" aria-label="Enlaces del proyecto">
                 {project.demoUrl && (
                   <Button
                     variant="primary"
@@ -253,9 +260,9 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     leftIcon={<ExternalLink className="w-5 h-5" aria-hidden="true" />}
                     onClick={() => window.open(project.demoUrl, '_blank')}
                     className="flex-1"
-                    aria-label={`View live demo of ${project.title} (opens in new tab)`}
+                    aria-label={`Ver demo en vivo de ${project.title} (abre en nueva pestaña)`}
                   >
-                    View Live Demo
+                    Ver Demo en Vivo
                   </Button>
                 )}
                 {project.githubUrl && (
@@ -265,9 +272,9 @@ export function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
                     leftIcon={<Github className="w-5 h-5" aria-hidden="true" />}
                     onClick={() => window.open(project.githubUrl, '_blank')}
                     className="flex-1"
-                    aria-label={`View source code for ${project.title} on GitHub (opens in new tab)`}
+                    aria-label={`Ver código fuente de ${project.title} en GitHub (abre en nueva pestaña)`}
                   >
-                    View Source Code
+                    Ver Código Fuente
                   </Button>
                 )}
               </div>

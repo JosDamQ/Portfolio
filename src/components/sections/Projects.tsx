@@ -17,6 +17,13 @@ export interface ProjectCardProps {
   index: number;
 }
 
+const categoryLabels: Record<string, string> = {
+  fullstack: 'Full Stack',
+  web: 'Web',
+  mobile: 'Móvil',
+  tool: 'Herramienta',
+};
+
 const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
   return (
     <motion.div
@@ -51,7 +58,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
           {project.featured && (
             <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
               <span className="px-2 py-1 bg-accent-500 text-white text-xs font-medium rounded-full">
-                Featured
+                Destacado
               </span>
             </div>
           )}
@@ -59,7 +66,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
           {/* Category Badge */}
           <div className="absolute top-2 sm:top-3 left-2 sm:left-3">
             <span className="px-2 py-1 bg-black/50 text-white text-xs font-medium rounded-full capitalize">
-              {project.category}
+              {categoryLabels[project.category]}
             </span>
           </div>
         </div>
@@ -86,7 +93,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
             ))}
             {project.technologies.length > 4 && (
               <span className="px-2 py-1 bg-secondary-100 dark:bg-secondary-800 text-secondary-600 dark:text-secondary-400 text-xs rounded-md">
-                +{project.technologies.length - 4} more
+                +{project.technologies.length - 4} más
               </span>
             )}
           </div>
@@ -118,7 +125,7 @@ const ProjectCard = ({ project, onViewDetails, index }: ProjectCardProps) => {
                 }}
                 className="flex-1 text-xs sm:text-sm min-h-[44px]"
               >
-                Code
+                Código
               </Button>
             )}
           </div>
@@ -144,11 +151,11 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
   });
 
   const filterOptions: { value: ProjectFilter; label: string }[] = [
-    { value: 'all', label: 'All Projects' },
+    { value: 'all', label: 'Todos los Proyectos' },
     { value: 'fullstack', label: 'Full Stack' },
-    { value: 'web', label: 'Web Apps' },
-    { value: 'mobile', label: 'Mobile' },
-    { value: 'tool', label: 'Tools' }
+    //{ value: 'web', label: 'Aplicaciones Web' },
+    { value: 'mobile', label: 'Móvil' },
+    { value: 'tool', label: 'Herramientas' }
   ];
 
   return (
@@ -163,11 +170,11 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
           className="text-center mb-8 sm:mb-12"
         >
           <h2 className="text-responsive-3xl font-bold text-secondary-900 dark:text-secondary-100 mb-3 sm:mb-4">
-            Featured Projects
+            Proyectos Destacados
           </h2>
           <p className="text-responsive-base text-secondary-600 dark:text-secondary-400 max-w-2xl mx-auto">
-            A showcase of my recent work, featuring web applications, mobile apps, and development tools
-            built with modern technologies.
+            Una muestra de mi trabajo reciente, con aplicaciones web, aplicaciones móviles y herramientas de desarrollo
+            construidas con tecnologías modernas.
           </p>
         </motion.div>
 
@@ -222,7 +229,7 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
             className="text-center py-8 sm:py-12"
           >
             <p className="text-secondary-600 dark:text-secondary-400 text-responsive-base">
-              No projects found for the selected category.
+              No se encontraron proyectos para la categoría seleccionada.
             </p>
           </motion.div>
         )}
@@ -242,7 +249,7 @@ export function Projects({ projects, onProjectSelect }: ProjectsSectionProps) {
               onClick={() => setActiveFilter('all')}
               className="min-h-[48px]"
             >
-              View All Projects
+              Ver Todos los Proyectos
             </Button>
           </motion.div>
         )}

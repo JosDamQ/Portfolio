@@ -2,116 +2,145 @@ import { Project } from '../types';
 
 export const projects: Project[] = [
   {
-    id: "ecommerce-platform",
-    title: "E-commerce Platform",
-    description: "Plataforma completa de comercio electrónico con carrito de compras, pagos seguros y panel de administración.",
-    longDescription: "Desarrollo completo de una plataforma de comercio electrónico desde cero, incluyendo frontend responsive, API REST, integración de pagos con Stripe, sistema de gestión de inventario y panel de administración. La aplicación maneja más de 1000 productos y procesa transacciones de forma segura.",
-    technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe", "JWT", "Tailwind CSS"],
-    features: [
-      "Carrito de compras dinámico",
-      "Procesamiento de pagos seguro",
-      "Panel de administración completo",
-      "Gestión de inventario en tiempo real",
-      "Sistema de autenticación y autorización",
-      "Búsqueda y filtrado avanzado"
+    id: "personal-finance-app",
+    title: "App de Finanzas Personales",
+    description: "Aplicación móvil full-stack para gestión de tarjetas de crédito, transacciones, cuotas y presupuestos personales con autenticación biométrica.",
+    longDescription: "Proyecto completo de finanzas personales compuesto por una app móvil en Flutter y una API REST en Node.js con Express. Permite al usuario administrar múltiples tarjetas de crédito, registrar transacciones, manejar compras en cuotas, planificar presupuestos mensuales y recibir notificaciones push. Incluye autenticación biométrica (Face ID / Touch ID), JWT, encriptación con Bcrypt y tareas programadas para recordatorios de pago.",
+    technologies: [
+      "Flutter",
+      "Dart",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JWT",
+      "Firebase",
+      "Bcrypt",
+      "Provider",
+      "Dio",
+      "Node-cron"
     ],
-    demoUrl: "https://ecommerce-demo.alexrodriguez.dev",
-    githubUrl: "https://github.com/alex-rodriguez/ecommerce-platform",
+    features: [
+      "Autenticación biométrica (Face ID / Touch ID / Huella)",
+      "Gestión de múltiples tarjetas de crédito",
+      "Registro y seguimiento de transacciones",
+      "Manejo de compras en cuotas con cálculo automático",
+      "Presupuestos mensuales con seguimiento en tiempo real",
+      "Notificaciones push para recordatorios de pago",
+      "Historial completo de movimientos",
+      "Tema oscuro con diseño Material moderno"
+    ],
+    demoUrl: "https://finanzas-dev-bdccc.web.app/",
+    githubUrl: "https://github.com/JosDamQ/finanzas-front",
     images: [
-      "/images/projects/ecommerce-1.jpg",
-      "/images/projects/ecommerce-2.jpg",
-      "/images/projects/ecommerce-3.jpg"
+      "/images/proyects/Finanzas/Dashboard.jpeg",
+      "/images/proyects/Finanzas/Login.png",
+    ],
+    category: "mobile",
+    featured: true
+  },
+  {
+    id: "admin-qs-laravel",
+    title: "Panel Admin para Empresa de Logística",
+    description: "Sistema de administración web para una empresa de logística que permite gestionar clientes, paquetes, estados de envío y roles de usuarios.",
+    longDescription: "Aplicación web desarrollada con Laravel para el panel administrativo de una empresa de logística. Permite gestionar el ciclo completo de los envíos: registro de clientes, creación y seguimiento de paquetes, control de estados, envío de correos y administración de roles y permisos. Incluye autenticación, control de acceso por roles y una arquitectura limpia con DTOs y servicios.",
+    technologies: [
+      "Laravel",
+      "PHP",
+      "MySQL",
+      "Blade",
+      "Eloquent ORM",
+      "Bootstrap",
+      "Nodemailer",
+      "Laravel Mail"
+    ],
+    features: [
+      "Gestión de clientes y paquetes",
+      "Seguimiento de estados de envío",
+      "Sistema de roles y permisos",
+      "Envío de notificaciones por correo",
+      "Panel administrativo completo",
+      "Autenticación y control de acceso"
+    ],
+    githubUrl: "https://github.com/JosDamQ/Admin-QS-Laravel",
+    images: [
+      "/images/proyects/Admin/Admin.png"
     ],
     category: "fullstack",
     featured: true
   },
   {
-    id: "task-management-app",
-    title: "Task Management App",
-    description: "Aplicación web colaborativa para gestión de tareas y proyectos con funcionalidades en tiempo real.",
-    longDescription: "Aplicación de gestión de tareas inspirada en Trello y Asana, con funcionalidades de colaboración en tiempo real usando WebSockets. Incluye tableros Kanban, asignación de tareas, comentarios, notificaciones push y sincronización automática entre dispositivos.",
-    technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "Socket.io", "NextAuth.js"],
+    id: "almacenadora-mern",
+    title: "Sistema de Control de Almacenadora",
+    description: "Plataforma web MERN para gestionar el arrendamiento de bodegas, controlando contratos, clientes e inventario de espacios disponibles.",
+    longDescription: "Sistema web desarrollado con el stack MERN (MongoDB, Express, React y Node.js) para una empresa que se dedica al arrendamiento de bodegas. Permite llevar el control de los espacios disponibles, gestionar contratos de arrendamiento, registrar clientes y dar seguimiento a los pagos y vencimientos de cada contrato.",
+    technologies: [
+      "React",
+      "Node.js",
+      "Express.js",
+      "MongoDB",
+      "Mongoose",
+      "JavaScript",
+      "CSS"
+    ],
     features: [
-      "Tableros Kanban interactivos",
-      "Colaboración en tiempo real",
-      "Sistema de notificaciones",
-      "Asignación y seguimiento de tareas",
-      "Comentarios y menciones",
-      "Sincronización automática"
+      "Gestión de bodegas y espacios disponibles",
+      "Registro y administración de contratos de arrendamiento",
+      "Control de clientes arrendatarios",
+      "Seguimiento de pagos y vencimientos",
+      "Panel de control con vista general del inventario",
+      "CRUD completo de entidades del negocio"
     ],
-    demoUrl: "https://taskapp-demo.alexrodriguez.dev",
-    githubUrl: "https://github.com/alex-rodriguez/task-management",
+    githubUrl: "https://github.com/JosDamQ/ProjectoAlmacenadora",
     images: [
-      "/images/projects/taskapp-1.jpg",
-      "/images/projects/taskapp-2.jpg"
+      "/images/proyects/Bodega/Bodega.png"
     ],
-    category: "web",
-    featured: true
-  },
-  {
-    id: "weather-dashboard",
-    title: "Weather Dashboard",
-    description: "Dashboard interactivo del clima con visualización de datos, mapas y pronósticos extendidos.",
-    longDescription: "Dashboard completo del clima que integra múltiples APIs meteorológicas para mostrar condiciones actuales, pronósticos de 7 días, mapas interactivos y alertas meteorológicas. Incluye geolocalización, búsqueda por ciudad y visualización de datos históricos.",
-    technologies: ["React", "D3.js", "OpenWeather API", "Mapbox", "Chart.js", "PWA"],
-    features: [
-      "Pronósticos detallados de 7 días",
-      "Mapas meteorológicos interactivos",
-      "Alertas y notificaciones",
-      "Geolocalización automática",
-      "Gráficos de tendencias históricas",
-      "Aplicación web progresiva (PWA)"
-    ],
-    demoUrl: "https://weather-dashboard.alexrodriguez.dev",
-    githubUrl: "https://github.com/alex-rodriguez/weather-dashboard",
-    images: [
-      "/images/projects/weather-1.jpg",
-      "/images/projects/weather-2.jpg"
-    ],
-    category: "web",
+    category: "fullstack",
     featured: false
   },
   {
-    id: "mobile-fitness-tracker",
-    title: "Mobile Fitness Tracker",
-    description: "Aplicación móvil para seguimiento de ejercicios y rutinas de entrenamiento personalizado.",
-    longDescription: "Aplicación móvil desarrollada con React Native para el seguimiento de actividades físicas, creación de rutinas personalizadas, registro de progreso y análisis de rendimiento. Integra con dispositivos wearables y APIs de salud del dispositivo.",
-    technologies: ["React Native", "Expo", "Firebase", "Redux", "Health Kit", "Google Fit"],
+    id: "hora-dental",
+    title: "HoraDental - App para Clínica Dental",
+    description: "Aplicación de escritorio desarrollada en Java SE para la gestión de citas, pacientes y reportes de una clínica dental.",
+    longDescription: "Aplicación de escritorio desarrollada con Java SE para cubrir las necesidades de administración de una clínica dental. Permite gestionar pacientes, programar y controlar citas, y generar reportes detallados usando iReport. Diseñada para correr de forma local sin necesidad de conexión a internet.",
+    technologies: [
+      "Java SE",
+      "iReport",
+      "Swing",
+      "NetBeans"
+    ],
     features: [
-      "Seguimiento de ejercicios y rutinas",
-      "Integración con dispositivos wearables",
-      "Análisis de progreso y estadísticas",
-      "Rutinas personalizadas",
-      "Sincronización con apps de salud",
-      "Recordatorios y notificaciones"
+      "Registro y gestión de pacientes",
+      "Programación y control de citas",
+      "Generación de reportes con iReport",
+      "Interfaz de escritorio con Java Swing",
+      "Gestión de historial clínico"
     ],
-    githubUrl: "https://github.com/alex-rodriguez/fitness-tracker",
+    githubUrl: "https://github.com/JosDamQ/HoraDental",
     images: [
-      "/images/projects/fitness-1.jpg",
-      "/images/projects/fitness-2.jpg"
+      "/images/proyects/HoraDental/image.png"
     ],
-    category: "mobile",
+    category: "tool",
     featured: false
   },
   {
-    id: "code-snippet-manager",
-    title: "Code Snippet Manager",
-    description: "Herramienta para desarrolladores para organizar, buscar y compartir fragmentos de código.",
-    longDescription: "Aplicación web para desarrolladores que permite organizar fragmentos de código por lenguaje y categoría, con funcionalidades de búsqueda avanzada, sintaxis highlighting, etiquetado y compartición. Incluye extensión para VS Code y CLI tool.",
-    technologies: ["Vue.js", "Nuxt.js", "Elasticsearch", "Prism.js", "Node.js", "Docker"],
+    id: "url-shortener",
+    title: "Acortador de URLs",
+    description: "Servicio backend para acortar URLs largas y redirigir a los usuarios mediante códigos únicos.",
+    longDescription: "API REST construida con Node.js y Express que permite acortar URLs largas generando un código único para cada una. El servicio maneja la redirección automática al acceder al enlace corto y ofrece una arquitectura modular con separación en servicios y controladores.",
+    technologies: [
+      "Node.js",
+      "Express.js",
+      "JavaScript"
+    ],
     features: [
-      "Organización por lenguajes y tags",
-      "Búsqueda avanzada y filtros",
-      "Syntax highlighting automático",
-      "Compartición y colaboración",
-      "Extensión para VS Code",
-      "API REST y CLI tool"
+      "Acortamiento de URLs con códigos únicos",
+      "Redirección automática al acceder al enlace",
+      "Arquitectura modular con servicios separados",
+      "API REST sencilla y rápida"
     ],
-    demoUrl: "https://snippets.alexrodriguez.dev",
-    githubUrl: "https://github.com/alex-rodriguez/snippet-manager",
-    images: [
-      "/images/projects/snippets-1.jpg"
-    ],
+    githubUrl: "https://github.com/JosDamQ/URL-shorting-service",
+    images: [],
     category: "tool",
     featured: false
   }
