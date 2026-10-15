@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Developer Portfolio',
+  title: 'Portafolio Josue García',
   description:
     'Professional portfolio showcasing web development projects and skills',
   keywords: ['developer', 'portfolio', 'web development', 'react', 'next.js'],

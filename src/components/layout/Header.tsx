@@ -16,9 +16,9 @@ const Header: React.FC<HeaderProps> = ({
 
   // Navigation sections
   const sections = [
-    { id: 'hero', label: 'Home', href: '#hero' },
-    { id: 'about', label: 'Sobre mi', href: '#about' },
-    { id: 'skills', label: 'Skills', href: '#skills' },
+    { id: 'hero', label: 'Inicio', href: '#hero' },
+    { id: 'about', label: 'Sobre mí', href: '#about' },
+    { id: 'skills', label: 'Habilidades', href: '#skills' },
     { id: 'experience', label: 'Experiencia', href: '#experience' },
     { id: 'projects', label: 'Proyectos', href: '#projects' },
     { id: 'contact', label: 'Contacto', href: '#contact' },
@@ -164,7 +164,7 @@ const Header: React.FC<HeaderProps> = ({
             <div className="flex items-center space-x-2">
               <span className="text-lg">💻</span>
               <span className="text-lg font-bold text-gray-900 dark:text-white">
-                Navigation
+                Navegación
               </span>
             </div>
             <button
@@ -210,7 +210,7 @@ const Header: React.FC<HeaderProps> = ({
           {/* Footer */}
           <div className="p-4 border-t border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-500 dark:text-gray-400 text-center">
-              Developer Portfolio
+              Portafolio de Desarrollador
             </p>
           </div>
         </div>

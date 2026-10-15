@@ -245,7 +245,7 @@ export const skillCategories: SkillCategory[] = [
     icon: "database"
   },
   {
-    name: "Tools & DevOps",
+    name: "Herramientas y DevOps",
     skills: skills.filter(skill => skill.category === 'tools'),
     icon: "wrench"
   },

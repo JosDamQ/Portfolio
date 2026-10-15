@@ -290,7 +290,7 @@ function ExperienceStats({ experiences }: ExperienceStatsProps) {
     {
       icon: Award,
       label: 'Posición Actual',
-      value: currentRole ? 'Full Stack Dev' : 'Disponible',
+      value: currentRole ? 'Full Stack' : 'Disponible',
       color: 'text-accent-500'
     }
   ];

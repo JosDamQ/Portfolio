@@ -7,11 +7,11 @@ import { getScrollTargetTop } from '@/lib/utils/scroll';
 const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
   // Navigation sections for quick links
   const quickLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Sobre mí', href: '#about' },
+    { label: 'Habilidades', href: '#skills' },
+    { label: 'Experiencia', href: '#experience' },
+    { label: 'Proyectos', href: '#projects' },
+    { label: 'Contacto', href: '#contact' },
   ];
 
   // Social media links with icons
@@ -20,19 +20,19 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
       name: 'Email',
       url: `mailto:${contactInfo.email}`,
       icon: Mail,
-      label: `Send email to ${contactInfo.email}`,
+      label: `Enviar email a ${contactInfo.email}`,
     },
     {
       name: 'LinkedIn',
       url: contactInfo.linkedin,
       icon: Linkedin,
-      label: 'Connect on LinkedIn (opens in new tab)',
+      label: 'Conectar en LinkedIn (abre en nueva pestaña)',
     },
     {
       name: 'GitHub',
       url: contactInfo.github,
       icon: Github,
-      label: 'View GitHub profile (opens in new tab)',
+      label: 'Ver perfil de GitHub (abre en nueva pestaña)',
     },
   ];
 
@@ -42,16 +42,16 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
       name: 'Twitter',
       url: contactInfo.twitter,
       icon: ExternalLink,
-      label: 'Follow on Twitter (opens in new tab)',
+      label: 'Seguir en Twitter (abre en nueva pestaña)',
     });
   }
 
   if (contactInfo.website) {
     socialLinks.push({
-      name: 'Website',
+      name: 'Sitio Web',
       url: contactInfo.website,
       icon: ExternalLink,
-      label: 'Visit personal website (opens in new tab)',
+      label: 'Visitar sitio web personal (abre en nueva pestaña)',
     });
   }
 
@@ -98,7 +98,7 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
               <span className="text-xl font-bold">{personalInfo.name}</span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              {personalInfo.title} with {personalInfo.summary.includes('2+') ? '2+' : 'multiple'} years of experience creating modern web applications and digital solutions.
+              {personalInfo.title} con {personalInfo.summary.includes('2+') ? '2+' : 'múltiples'} años de experiencia creando aplicaciones web modernas y soluciones digitales.
             </p>
             <p className="text-gray-400 text-sm" aria-label={`Located in ${personalInfo.location}`}>
               <span aria-hidden="true">📍</span> {personalInfo.location}
@@ -107,7 +107,7 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
 
           {/* Quick Navigation Links */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+            <h3 className="text-lg font-semibold mb-4">Enlaces Rápidos</h3>
             <nav role="navigation" aria-label="Footer navigation">
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
@@ -115,7 +115,7 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
                     <button
                       onClick={() => handleSectionClick(link.href)}
                       className="text-gray-300 hover:text-white transition-colors duration-200 text-sm focus-ring rounded-sm min-h-[44px] flex items-center"
-                      aria-label={`Navigate to ${link.label} section`}
+                      aria-label={`Navegar a la sección ${link.label}`}
                     >
                       {link.label}
                     </button>
@@ -127,7 +127,7 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
 
           {/* Contact Information */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Connect</h3>
+            <h3 className="text-lg font-semibold mb-4">Conectar</h3>
             <div className="space-y-3" role="list" aria-label="Social media and contact links">
               {socialLinks.map((social) => {
                 const IconComponent = social.icon;
@@ -157,10 +157,10 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <div className="text-gray-400 text-sm mb-4 sm:mb-0">
             <p>
-              &copy; {new Date().getFullYear()} {personalInfo.name}. All rights reserved.
+              &copy; {new Date().getFullYear()} {personalInfo.name}. Todos los derechos reservados.
             </p>
             <p className="mt-1">
-              Built with Next.js, TypeScript, and Tailwind CSS
+              Construido con Next.js, TypeScript y Tailwind CSS
             </p>
           </div>
 
@@ -168,9 +168,9 @@ const Footer: React.FC<FooterProps> = ({ contactInfo, personalInfo }) => {
           <button
             onClick={scrollToTop}
             className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200 group focus-ring rounded-sm min-h-[44px] px-2"
-            aria-label="Scroll back to top of page"
+            aria-label="Volver arriba de la página"
           >
-            <span className="text-sm">Back to top</span>
+            <span className="text-sm">Volver arriba</span>
             <ArrowUp 
               className="w-4 h-4 group-hover:-translate-y-1 transition-transform duration-200" 
               aria-hidden="true"
