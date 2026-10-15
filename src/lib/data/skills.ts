@@ -111,7 +111,7 @@ export const skills: Skill[] = [
   {
     name: "PostgreSQL",
     category: "database",
-    yearsOfExperience: 2,
+    yearsOfExperience: 3,
     icon: "postgresql"
   },
   {
