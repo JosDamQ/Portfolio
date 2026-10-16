@@ -5,7 +5,8 @@ export const personalInfo: PersonalInfo = {
   title: "Programador Full Stack",
   summary: "Desarrollador Full Stack con 3+ años de experiencia especializado en el ecosistema JavaScript/TypeScript. Apasionado por construir arquitecturas escalables y código mantenible que resuelva problemas reales del negocio.",
   avatar: "https://github.com/JosDamQ.png?size=400",
-  resumeUrl: "/CV_ES.pdf",
+  //resumeUrl: "/CV_ES.pdf",
+  resumeUrl: "/Josue_Damian_CV.pdf",
   location: "Guatemala, Guatemala"
 };
 
